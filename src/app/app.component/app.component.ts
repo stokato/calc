@@ -6,7 +6,9 @@
 import { Component } from '@angular/core';
 import {TabsComponent} from "../tabs.component/tabs.component";
 
-// const f2p = require('../vendor/f2pinvoker.js');
+const f2p = require('../../assets/vendor/F2PInvoker.js');
+
+// import { F2PInvoker } from "../../assets/vendor/F2PInvoker.js";
 
 @Component({
     selector: 'my-app',
@@ -19,5 +21,9 @@ export class AppComponent {
     constructor() {
         new TabsComponent();
 
+        let f = f2p.F2PInvoker("2", "3", true);
+
+        console.log(f2p);
+        console.log(f2p.request("dl", {}));
     }
 }

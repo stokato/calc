@@ -11,5 +11,5 @@ require("@angular/http");
 require("@angular/router");
 // RxJS
 require("rxjs");
-require("src/assets/vendor/F2PInvoker.js");
+// import 'src/assets/vendor/F2PInvoker.js'; 
 //# sourceMappingURL=vendor.js.map

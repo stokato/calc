@@ -13,4 +13,4 @@ import '@angular/router';
 // RxJS
 import 'rxjs';
 
-import 'src/assets/vendor/F2PInvoker.js';
+// import 'src/assets/vendor/F2PInvoker.js';

@@ -13,10 +13,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require("@angular/core");
 var tabs_component_1 = require("../tabs.component/tabs.component");
-// const f2p = require('../vendor/f2pinvoker.js');
+var f2p = require('../../assets/vendor/F2PInvoker.js');
+// import { F2PInvoker } from "../../assets/vendor/F2PInvoker.js";
 var AppComponent = (function () {
     function AppComponent() {
         new tabs_component_1.TabsComponent();
+        var f = f2p.F2PInvoker("2", "3", true);
+        console.log(f2p);
+        console.log(f2p.request("dl", {}));
     }
     return AppComponent;
 }());

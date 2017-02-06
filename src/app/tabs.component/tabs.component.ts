@@ -7,11 +7,14 @@ import { Input, ViewContainerRef, ViewChild, ComponentFactoryResolver } from '@a
 
 import {TabComponent, TechnologicalTabComponent, AdvancedTabComponent} from "../tab.component/tab.component";
 
+const template = require('./tabs.component.html');
+const css      = require('../../assets/css/style.css');
+
 @Component({
     selector: 'dynamic-tabs',
     entryComponents: [TechnologicalTabComponent, AdvancedTabComponent],
-    template: require('./tabs.component.html'),
-    styles: [ require('./../tab.component/tabs.component.css')]
+    template: template,
+    styles: [ css ]
 })
 export class TabsComponent {
     componentData = null;
@@ -48,7 +51,8 @@ export class TabsComponent {
 
 @Component({
     selector: 'tab-content',
-    template: `<div class="content" id="container" #dynamicComponentContainer></div>`
+    template: `<div class="content" id="container" #dynamicComponentContainer></div>`,
+    styles: [ css ]
 })
 export class TabContent {
     currentComponent = null;

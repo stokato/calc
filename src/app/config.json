@@ -1,0 +1,7 @@
+{
+  "baseSettings" : {
+    "gateway" : "server",
+    "defaultPackage" : "def",
+    "useShort" : false
+  }
+}

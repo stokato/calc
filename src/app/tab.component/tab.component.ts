@@ -4,32 +4,18 @@
 
 import { Component } from '@angular/core';
 
+
+const technoTemplate = require('./tab.component.html');
+const css            = require('../../assets/css/style.css');
+
 export class TabComponent {
 
 }
 
 @Component({
     selector: 'tab-technological',
-    template: `<div>
-                  <ul class="pads">
-                     <li>
-                        <label>Сохранять маршрут вычислений: </label>
-                        <input type="checkbox" [checked]="saveCalcRout" 
-                               (input)="saveCalcRout = $event.target.value" />
-                     </li>
-                     <li>
-                        <label>Спецификация профилей и пакетов для сборки: </label>
-                        <input type="checkbox" [checked]="profilesAndPackagesStec" 
-                               (input)="profilesAndPackagesStec = $event.target.value" />
-                     </li>
-                     <li>
-                        <label>Расчет сторон фурнитуры с учетом фальца: </label>
-                        <input type="checkbox" [checked]="fittingsSidesCalculation" 
-                               (input)="fittingsSidesCalculation = $event.target.value" />
-                     </li>
-                  </ul>
-               </div>`,
-    styles: [require('./tab.component.css')]
+    template: technoTemplate,
+    styles: [ css ]
 })
 export class TechnologicalTabComponent extends TabComponent {
     private saveCalcRout: boolean;
@@ -45,7 +31,8 @@ export class TechnologicalTabComponent extends TabComponent {
 
 @Component({
     selector: 'tab-advanced',
-    template: `<div></div>`
+    template: `<div></div>`,
+    styles: [ css ]
 })
 export class AdvancedTabComponent extends TabComponent {
 

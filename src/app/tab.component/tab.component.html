@@ -1,0 +1,19 @@
+<div>
+  <ul class="pads">
+    <li>
+      <label>Сохранять маршрут вычислений: </label>
+      <input type="checkbox" [checked]="saveCalcRout"
+             (input)="saveCalcRout = $event.target.value" />
+    </li>
+    <li>
+      <label>Спецификация профилей и пакетов для сборки: </label>
+      <input type="checkbox" [checked]="profilesAndPackagesStec"
+             (input)="profilesAndPackagesStec = $event.target.value" />
+    </li>
+    <li>
+      <label>Расчет сторон фурнитуры с учетом фальца: </label>
+      <input type="checkbox" [checked]="fittingsSidesCalculation"
+             (input)="fittingsSidesCalculation = $event.target.value" />
+    </li>
+  </ul>
+</div>

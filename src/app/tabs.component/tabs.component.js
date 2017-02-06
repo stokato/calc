@@ -14,6 +14,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require("@angular/core");
 var core_2 = require("@angular/core");
 var tab_component_1 = require("../tab.component/tab.component");
+var template = require('./tabs.component.html');
+var css = require('../../assets/css/style.css');
 var TabsComponent = (function () {
     function TabsComponent() {
         this.componentData = null;
@@ -46,8 +48,8 @@ TabsComponent = __decorate([
     core_1.Component({
         selector: 'dynamic-tabs',
         entryComponents: [tab_component_1.TechnologicalTabComponent, tab_component_1.AdvancedTabComponent],
-        template: require('./tabs.component.html'),
-        styles: [require('./../tab.component/tabs.component.css')]
+        template: template,
+        styles: [css]
     }),
     __metadata("design:paramtypes", [])
 ], TabsComponent);
@@ -90,7 +92,8 @@ __decorate([
 TabContent = __decorate([
     core_1.Component({
         selector: 'tab-content',
-        template: "<div class=\"content\" id=\"container\" #dynamicComponentContainer></div>"
+        template: "<div class=\"content\" id=\"container\" #dynamicComponentContainer></div>",
+        styles: [css]
     }),
     __metadata("design:paramtypes", [core_2.ComponentFactoryResolver])
 ], TabContent);

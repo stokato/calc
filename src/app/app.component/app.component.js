@@ -13,22 +13,39 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require("@angular/core");
 var tabs_component_1 = require("../tabs.component/tabs.component");
+var base_service_1 = require("../services/base.service");
 var f2p = require('../../assets/vendor/F2PInvoker.js');
-// import { F2PInvoker } from "../../assets/vendor/F2PInvoker.js";
+var template = require('./app.component.html');
+var css = require('../../assets/css/style.css');
 var AppComponent = (function () {
     function AppComponent() {
+        this._BaseService = new base_service_1.BaseService('f2p');
+        this._BaseService.call('getSettings', ['one', 'two'], function (err) {
+            console.log(err);
+        });
         new tabs_component_1.TabsComponent();
         var f = f2p.F2PInvoker("2", "3", true);
-        console.log(f2p);
-        console.log(f2p.request("dl", {}));
+        window['recieveFromFlash'] = function (txt) {
+            console.log(txt);
+        };
     }
+    AppComponent.prototype.setValueFlash = function () {
+        var value = "Got from JS";
+        var movie = this.getMovie();
+        movie.sendFromJS(value);
+    };
+    AppComponent.prototype.getMovie = function () {
+        var M$ = navigator.appName.indexOf("Microsoft") != -1;
+        return (M$ ? window : document)["BridgeMovie"];
+    };
     return AppComponent;
 }());
 AppComponent = __decorate([
     core_1.Component({
         selector: 'my-app',
-        template: require('./app.component.html'),
-        styles: [require('./app.component.css')]
+        template: template,
+        styles: [css],
+        providers: [base_service_1.BaseService]
     }),
     __metadata("design:paramtypes", [])
 ], AppComponent);

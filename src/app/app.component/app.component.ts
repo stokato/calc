@@ -5,7 +5,7 @@
 
 import {Component, ViewChild} from '@angular/core';
 import {TabsComponent} from '../tabs.component/tabs.component';
-import {BaseService} from '../services/base.service';
+import {ServerService} from '../services/base.service';
 
 const f2p = require('../../assets/vendor/F2PInvoker.js');
 
@@ -16,15 +16,16 @@ const css      = require('../../assets/css/style.css');
     selector: 'my-app',
     template: template,
     styles: [ css ],
-    providers: [BaseService]
+    providers: [ServerService]
 })
 export class AppComponent {
-    _BaseService: BaseService;
+    srv: ServerService;
 
     constructor() {
-        this._BaseService = new BaseService('f2p');
-        this._BaseService.call('getSettings', ['one', 'two'], (err) => {
-           console.log(err);
+        this.srv = ServerService.getInstance();
+
+        this.srv.issue.compete('1', (res) =>{
+            console.log(res);
         });
 
         new TabsComponent();

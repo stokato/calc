@@ -11,17 +11,17 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require("@angular/core");
-var tabs_component_1 = require("../tabs.component/tabs.component");
-var base_service_1 = require("../services/base.service");
+var core_1 = require('@angular/core');
+var tabs_component_1 = require('../tabs.component/tabs.component');
+var base_service_1 = require('../services/base.service');
 var f2p = require('../../assets/vendor/F2PInvoker.js');
 var template = require('./app.component.html');
 var css = require('../../assets/css/style.css');
 var AppComponent = (function () {
     function AppComponent() {
-        this._BaseService = new base_service_1.BaseService('f2p');
-        this._BaseService.call('getSettings', ['one', 'two'], function (err) {
-            console.log(err);
+        this.srv = base_service_1.ServerService.getInstance();
+        this.srv.issue.compete('1', function (res) {
+            console.log(res);
         });
         new tabs_component_1.TabsComponent();
         var f = f2p.F2PInvoker("2", "3", true);
@@ -38,16 +38,16 @@ var AppComponent = (function () {
         var M$ = navigator.appName.indexOf("Microsoft") != -1;
         return (M$ ? window : document)["BridgeMovie"];
     };
+    AppComponent = __decorate([
+        core_1.Component({
+            selector: 'my-app',
+            template: template,
+            styles: [css],
+            providers: [base_service_1.ServerService]
+        }), 
+        __metadata('design:paramtypes', [])
+    ], AppComponent);
     return AppComponent;
 }());
-AppComponent = __decorate([
-    core_1.Component({
-        selector: 'my-app',
-        template: template,
-        styles: [css],
-        providers: [base_service_1.BaseService]
-    }),
-    __metadata("design:paramtypes", [])
-], AppComponent);
 exports.AppComponent = AppComponent;
 //# sourceMappingURL=app.component.js.map

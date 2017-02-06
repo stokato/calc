@@ -7,16 +7,55 @@ import {Injectable} from "@angular/core";
 const config = require('../config.json');
 const F2p = require('../../assets/vendor/F2PInvoker.js');
 
-let server: Server;
-
 @Injectable()
-export class BaseService {
+export class ServerService {
+    static isCreating: boolean = false;
+    static instance: ServerService;
 
-    constructor( private _service: string ) {
-        if(!server) {
-            server = new Server();
+    _f2p: any = F2p;
+    _issue: Issue;
+
+    constructor() {
+        if(!ServerService.isCreating) {
+            throw new Error("Вы не можете использовать конструктор для этого класса. Воспользуйтесь методом getInstance");
         }
+
+        let gw = config.baseSettings.gateway;
+        let defPack = config.baseSettings.defalutPackage;
+        let uShort = config.baseSettings.useShort;
+
+        this._f2p.F2PInvoker(gw, defPack, uShort);
+
+        this._issue = new Issue();
     }
+
+    static getInstance() {
+        if(ServerService.instance == null) {
+            ServerService.isCreating = true;
+            ServerService.instance = new ServerService();
+            ServerService.isCreating = false;
+        }
+        
+        return ServerService.instance;
+    }
+
+    static err (res) {
+        alert( ( typeof res.error != 'undefined' ) ? res.error : 'Ошибка при запросе к серверу' );
+    }
+
+
+    request(params) {
+        this._f2p.request(...params);
+    }
+
+    get issue () {
+        return this._issue;
+    }
+}
+
+class BaseService {
+
+    constructor(private _service: string ) {}
 
     public prepareAndCall (name, ...params) {
 
@@ -34,40 +73,16 @@ export class BaseService {
                 try {
                     onResult(obj);
                 } catch (e) {
-                    Server.err({error: 'Ошибка при обработке ответа'})
+                    ServerService.err({error: 'Ошибка при обработке ответа'})
                 }
             }
         };
 
-        server.request([ this._service, method, callback, ...params ]);
+        ServerService.getInstance().request([ this._service, method, callback, ...params ]);
     }
 
 }
 
-
-class Server {
-    f2p: any = F2p;
-    issue: Issue;
-
-    constructor() {
-        console.log(config);
-        let gw = config.baseSettings.gateway;
-        let defPack = config.baseSettings.defalutPackage;
-        let uShort = config.baseSettings.useShort;
-
-        this.f2p.F2PInvoker(gw, defPack, uShort);
-
-        this.issue = new Issue();
-    }
-
-    request(params) {
-        this.f2p.request(...params);
-    }
-
-    static err (res) {
-        alert( ( typeof res.error != 'undefined' ) ? res.error : 'Ошибка при запросе к серверу' );
-    }
-}
 
 class Issue {
     private baseService : BaseService;

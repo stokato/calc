@@ -16,7 +16,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require("@angular/core");
+var core_1 = require('@angular/core');
 var technoTemplate = require('./tab.component.html');
 var css = require('../../assets/css/style.css');
 var TabComponent = (function () {
@@ -28,34 +28,34 @@ exports.TabComponent = TabComponent;
 var TechnologicalTabComponent = (function (_super) {
     __extends(TechnologicalTabComponent, _super);
     function TechnologicalTabComponent() {
-        var _this = _super.call(this) || this;
-        _this.fittingsSidesCalculation = true;
-        return _this;
+        _super.call(this);
+        this.fittingsSidesCalculation = true;
     }
+    TechnologicalTabComponent = __decorate([
+        core_1.Component({
+            selector: 'tab-technological',
+            template: technoTemplate,
+            styles: [css]
+        }), 
+        __metadata('design:paramtypes', [])
+    ], TechnologicalTabComponent);
     return TechnologicalTabComponent;
 }(TabComponent));
-TechnologicalTabComponent = __decorate([
-    core_1.Component({
-        selector: 'tab-technological',
-        template: technoTemplate,
-        styles: [css]
-    }),
-    __metadata("design:paramtypes", [])
-], TechnologicalTabComponent);
 exports.TechnologicalTabComponent = TechnologicalTabComponent;
 var AdvancedTabComponent = (function (_super) {
     __extends(AdvancedTabComponent, _super);
     function AdvancedTabComponent() {
-        return _super !== null && _super.apply(this, arguments) || this;
+        _super.apply(this, arguments);
     }
+    AdvancedTabComponent = __decorate([
+        core_1.Component({
+            selector: 'tab-advanced',
+            template: "<div></div>",
+            styles: [css]
+        }), 
+        __metadata('design:paramtypes', [])
+    ], AdvancedTabComponent);
     return AdvancedTabComponent;
 }(TabComponent));
-AdvancedTabComponent = __decorate([
-    core_1.Component({
-        selector: 'tab-advanced',
-        template: "<div></div>",
-        styles: [css]
-    })
-], AdvancedTabComponent);
 exports.AdvancedTabComponent = AdvancedTabComponent;
 //# sourceMappingURL=tab.component.js.map

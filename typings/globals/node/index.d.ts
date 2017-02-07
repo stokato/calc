@@ -741,7 +741,7 @@ declare module "http" {
          */
         maxSockets?: number;
         /**
-         * Maximum number of sockets to leave open in a free state. Only relevant if keepAlive is set to true. Default = 256.
+         * Maximum number of sockets to leave openWindow in a free state. Only relevant if keepAlive is set to true. Default = 256.
          */
         maxFreeSockets?: number;
     }
@@ -757,7 +757,7 @@ declare module "http" {
          * Destroy any sockets that are currently in use by the agent.
          * It is usually not necessary to do this. However, if you are using an agent with KeepAlive enabled,
          * then it is best to explicitly shut down the agent when you know that it will no longer be used. Otherwise,
-         * sockets may hang open for quite a long time before the server terminates them.
+         * sockets may hang openWindow for quite a long time before the server terminates them.
          */
         destroy(): void;
     }
@@ -2235,27 +2235,27 @@ declare module "fs" {
 
         /**
          * events.EventEmitter
-         *   1. open
+         *   1. openWindow
          *   2. close
          */
         addListener(event: string, listener: Function): this;
-        addListener(event: "open", listener: (fd: number) => void): this;
+        addListener(event: "openWindow", listener: (fd: number) => void): this;
         addListener(event: "close", listener: () => void): this;
 
         on(event: string, listener: Function): this;
-        on(event: "open", listener: (fd: number) => void): this;
+        on(event: "openWindow", listener: (fd: number) => void): this;
         on(event: "close", listener: () => void): this;
 
         once(event: string, listener: Function): this;
-        once(event: "open", listener: (fd: number) => void): this;
+        once(event: "openWindow", listener: (fd: number) => void): this;
         once(event: "close", listener: () => void): this;
 
         prependListener(event: string, listener: Function): this;
-        prependListener(event: "open", listener: (fd: number) => void): this;
+        prependListener(event: "openWindow", listener: (fd: number) => void): this;
         prependListener(event: "close", listener: () => void): this;
 
         prependOnceListener(event: string, listener: Function): this;
-        prependOnceListener(event: "open", listener: (fd: number) => void): this;
+        prependOnceListener(event: "openWindow", listener: (fd: number) => void): this;
         prependOnceListener(event: "close", listener: () => void): this;
     }
 
@@ -2266,27 +2266,27 @@ declare module "fs" {
 
         /**
          * events.EventEmitter
-         *   1. open
+         *   1. openWindow
          *   2. close
          */
         addListener(event: string, listener: Function): this;
-        addListener(event: "open", listener: (fd: number) => void): this;
+        addListener(event: "openWindow", listener: (fd: number) => void): this;
         addListener(event: "close", listener: () => void): this;
 
         on(event: string, listener: Function): this;
-        on(event: "open", listener: (fd: number) => void): this;
+        on(event: "openWindow", listener: (fd: number) => void): this;
         on(event: "close", listener: () => void): this;
 
         once(event: string, listener: Function): this;
-        once(event: "open", listener: (fd: number) => void): this;
+        once(event: "openWindow", listener: (fd: number) => void): this;
         once(event: "close", listener: () => void): this;
 
         prependListener(event: string, listener: Function): this;
-        prependListener(event: "open", listener: (fd: number) => void): this;
+        prependListener(event: "openWindow", listener: (fd: number) => void): this;
         prependListener(event: "close", listener: () => void): this;
 
         prependOnceListener(event: string, listener: Function): this;
-        prependOnceListener(event: "open", listener: (fd: number) => void): this;
+        prependOnceListener(event: "openWindow", listener: (fd: number) => void): this;
         prependOnceListener(event: "close", listener: () => void): this;
     }
 
@@ -2535,49 +2535,49 @@ declare module "fs" {
 
         // File Open Constants
 
-        /** Constant for fs.open(). Flag indicating to open a file for read-only access. */
+        /** Constant for fs.openWindow(). Flag indicating to openWindow a file for read-only access. */
         export const O_RDONLY: number;
 
-        /** Constant for fs.open(). Flag indicating to open a file for write-only access. */
+        /** Constant for fs.openWindow(). Flag indicating to openWindow a file for write-only access. */
         export const O_WRONLY: number;
 
-        /** Constant for fs.open(). Flag indicating to open a file for read-write access. */
+        /** Constant for fs.openWindow(). Flag indicating to openWindow a file for read-write access. */
         export const O_RDWR: number;
 
-        /** Constant for fs.open(). Flag indicating to create the file if it does not already exist. */
+        /** Constant for fs.openWindow(). Flag indicating to create the file if it does not already exist. */
         export const O_CREAT: number;
 
-        /** Constant for fs.open(). Flag indicating that opening a file should fail if the O_CREAT flag is set and the file already exists. */
+        /** Constant for fs.openWindow(). Flag indicating that opening a file should fail if the O_CREAT flag is set and the file already exists. */
         export const O_EXCL: number;
 
-        /** Constant for fs.open(). Flag indicating that if path identifies a terminal device, opening the path shall not cause that terminal to become the controlling terminal for the process (if the process does not already have one). */
+        /** Constant for fs.openWindow(). Flag indicating that if path identifies a terminal device, opening the path shall not cause that terminal to become the controlling terminal for the process (if the process does not already have one). */
         export const O_NOCTTY: number;
 
-        /** Constant for fs.open(). Flag indicating that if the file exists and is a regular file, and the file is opened successfully for write access, its length shall be truncated to zero. */
+        /** Constant for fs.openWindow(). Flag indicating that if the file exists and is a regular file, and the file is opened successfully for write access, its length shall be truncated to zero. */
         export const O_TRUNC: number;
 
-        /** Constant for fs.open(). Flag indicating that data will be appended to the end of the file. */
+        /** Constant for fs.openWindow(). Flag indicating that data will be appended to the end of the file. */
         export const O_APPEND: number;
 
-        /** Constant for fs.open(). Flag indicating that the open should fail if the path is not a directory. */
+        /** Constant for fs.openWindow(). Flag indicating that the openWindow should fail if the path is not a directory. */
         export const O_DIRECTORY: number;
 
-        /** Constant for fs.open(). Flag indicating reading accesses to the file system will no longer result in an update to the atime information associated with the file. This flag is available on Linux operating systems only. */
+        /** Constant for fs.openWindow(). Flag indicating reading accesses to the file system will no longer result in an update to the atime information associated with the file. This flag is available on Linux operating systems only. */
         export const O_NOATIME: number;
 
-        /** Constant for fs.open(). Flag indicating that the open should fail if the path is a symbolic link. */
+        /** Constant for fs.openWindow(). Flag indicating that the openWindow should fail if the path is a symbolic link. */
         export const O_NOFOLLOW: number;
 
-        /** Constant for fs.open(). Flag indicating that the file is opened for synchronous I/O. */
+        /** Constant for fs.openWindow(). Flag indicating that the file is opened for synchronous I/O. */
         export const O_SYNC: number;
 
-        /** Constant for fs.open(). Flag indicating to open the symbolic link itself rather than the resource it is pointing to. */
+        /** Constant for fs.openWindow(). Flag indicating to openWindow the symbolic link itself rather than the resource it is pointing to. */
         export const O_SYMLINK: number;
 
-        /** Constant for fs.open(). When set, an attempt will be made to minimize caching effects of file I/O. */
+        /** Constant for fs.openWindow(). When set, an attempt will be made to minimize caching effects of file I/O. */
         export const O_DIRECT: number;
 
-        /** Constant for fs.open(). Flag indicating to open the file in nonblocking mode when possible. */
+        /** Constant for fs.openWindow(). Flag indicating to openWindow the file in nonblocking mode when possible. */
         export const O_NONBLOCK: number;
 
         // File Type Constants

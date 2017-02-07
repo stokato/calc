@@ -8,7 +8,7 @@ import { Input, ViewContainerRef, ViewChild, ComponentFactoryResolver } from '@a
 import {TabComponent, TechnologicalTabComponent, AdvancedTabComponent} from "../tab.component/tab.component";
 
 const template = require('./tabs.component.html');
-const css      = require('../../assets/css/style.css');
+const css      = require('./tabs.component.css');
 
 @Component({
     selector: 'dynamic-tabs',
@@ -44,6 +44,12 @@ export class TabsComponent {
     }
 
     initTab(tab) {
+        for(let i = 0; i < this.tabs.length; i++) {
+            this.tabs[i].active = false;
+        }
+
+        tab.active = true;
+
         this.componentData = tab.component;
     }
 }

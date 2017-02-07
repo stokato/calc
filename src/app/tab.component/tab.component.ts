@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
 
 
 const technoTemplate = require('./tab.component.html');
-const css            = require('../../assets/css/style.css');
+const css            = require('./tab.component.css');
 
 export class TabComponent {
 

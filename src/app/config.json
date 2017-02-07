@@ -3,5 +3,8 @@
     "gateway" : "server",
     "defaultPackage" : "def",
     "useShort" : false
+  },
+  "flashSettings": {
+    "flashID" : "BridgeMovie"
   }
 }

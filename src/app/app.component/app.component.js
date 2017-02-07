@@ -11,43 +11,29 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
-var tabs_component_1 = require('../tabs.component/tabs.component');
-var base_service_1 = require('../services/base.service');
-var f2p = require('../../assets/vendor/F2PInvoker.js');
+var core_1 = require("@angular/core");
+var window_component_1 = require("../window.component/window.component");
 var template = require('./app.component.html');
 var css = require('../../assets/css/style.css');
 var AppComponent = (function () {
     function AppComponent() {
-        this.srv = base_service_1.ServerService.getInstance();
-        this.srv.issue.compete('1', function (res) {
-            console.log(res);
-        });
-        new tabs_component_1.TabsComponent();
-        var f = f2p.F2PInvoker("2", "3", true);
-        window['recieveFromFlash'] = function (txt) {
-            console.log(txt);
-        };
     }
-    AppComponent.prototype.setValueFlash = function () {
-        var value = "Got from JS";
-        var movie = this.getMovie();
-        movie.sendFromJS(value);
+    AppComponent.prototype.openWindow = function () {
+        this.windowComponent.open();
     };
-    AppComponent.prototype.getMovie = function () {
-        var M$ = navigator.appName.indexOf("Microsoft") != -1;
-        return (M$ ? window : document)["BridgeMovie"];
-    };
-    AppComponent = __decorate([
-        core_1.Component({
-            selector: 'my-app',
-            template: template,
-            styles: [css],
-            providers: [base_service_1.ServerService]
-        }), 
-        __metadata('design:paramtypes', [])
-    ], AppComponent);
     return AppComponent;
 }());
+__decorate([
+    core_1.ViewChild('windowApp'),
+    __metadata("design:type", window_component_1.WindowComponent)
+], AppComponent.prototype, "windowComponent", void 0);
+AppComponent = __decorate([
+    core_1.Component({
+        selector: 'my-app',
+        template: template,
+        styles: []
+    }),
+    __metadata("design:paramtypes", [])
+], AppComponent);
 exports.AppComponent = AppComponent;
 //# sourceMappingURL=app.component.js.map

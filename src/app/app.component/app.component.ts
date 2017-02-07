@@ -4,10 +4,7 @@
 
 
 import {Component, ViewChild} from '@angular/core';
-import {TabsComponent} from '../tabs.component/tabs.component';
-import {ServerService} from '../services/base.service';
-
-const f2p = require('../../assets/vendor/F2PInvoker.js');
+import {WindowComponent} from "../window.component/window.component";
 
 const template = require('./app.component.html');
 const css      = require('../../assets/css/style.css');
@@ -15,40 +12,17 @@ const css      = require('../../assets/css/style.css');
 @Component({
     selector: 'my-app',
     template: template,
-    styles: [ css ],
-    providers: [ServerService]
+    styles: [  ]
 })
 export class AppComponent {
-    srv: ServerService;
+
+    @ViewChild('windowApp') windowComponent: WindowComponent;
 
     constructor() {
-        this.srv = ServerService.getInstance();
 
-        this.srv.issue.compete('1', (res) =>{
-            console.log(res);
-        });
-
-        new TabsComponent();
-
-        let f = f2p.F2PInvoker("2", "3", true);
-
-        window['recieveFromFlash'] = (txt) => {
-            console.log(txt);
-        };
     }
 
-    setValueFlash() {
-        let value = "Got from JS";
-
-        let movie = this.getMovie();
-
-        movie.sendFromJS(value);
+    openWindow() {
+        this.windowComponent.open()
     }
-
-    getMovie() {
-        let M$ = navigator.appName.indexOf("Microsoft")!=-1;
-        return (M$ ? window : document)["BridgeMovie"];
-    }
-
-
 }

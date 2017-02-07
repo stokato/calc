@@ -1,6 +1,8 @@
-<div id="menu">
+<div class="menu">
   <ul>
-    <li *ngFor="let tab of tabs" (click)="initTab(tab)">{{tab.title}}</li>
+    <li *ngFor="let tab of tabs"><a (click)="initTab(tab)" [ngClass]="tab.active? {current:true} : {current:false}">{{tab.title}}</a></li>
   </ul>
 </div>
+
+
 <tab-content [componentData]="componentData"></tab-content>

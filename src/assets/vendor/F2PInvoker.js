@@ -234,7 +234,7 @@ var F2PInvoker = ru.vbinc.net.F2PInvoker = function( gateway, defaultPackage, us
     var onRequestComplete = function() {       
         // если статус ответа 200 - значит пришёл корректный ответ
         if (xhr.status == 200) {                       
- 
+            console.log(xhr.responseText); // консоль
             try {
                 var result = JSON.parse( xhr.responseText );                        
             } catch (e) {

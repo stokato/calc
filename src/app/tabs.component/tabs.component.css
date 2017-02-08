@@ -27,15 +27,19 @@
 	border-bottom: 1px;
 }
 
-.menu ul li.selected a{
-	color:#fffdbf;
-	-moz-border-radius: 3px;
-	-webkit-border-radius: 3px;
-}
+/*.menu ul li.selected a{*/
+	/*color:#fffdbf;*/
+	/*-moz-border-radius: 3px;*/
+	/*-webkit-border-radius: 3px;*/
+/*}*/
 
-.current {
+/*.current {*/
+	/*color: #fff !important;*/
+	/*border-bottom: #ffffff !important;*/
+	/*-moz-border-radius: 3px !important;*/
+	/*-webkit-border-radius: 3px !important;*/
+/*}*/
+
+.menu ul .current {
 	color: #fff !important;
-	border-bottom: #ffffff !important;
-	-moz-border-radius: 3px !important;
-	-webkit-border-radius: 3px !important;
 }

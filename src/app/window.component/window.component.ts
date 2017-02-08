@@ -4,6 +4,7 @@
 
 import {Component, Input, Output} from '@angular/core';
 import {FlashService} from "../services/flash.service";
+import {ServerService} from '../services/server.service';
 
 const template = require('./window.component.html');
 const css      = require('./window.component.css');
@@ -12,13 +13,20 @@ const css      = require('./window.component.css');
     selector: 'app-window',
     template: template,
     styles: [css],
-    providers: [FlashService]
+    providers: [FlashService, ServerService]
 })
 export class WindowComponent {
+    server : ServerService;
     isHidden: boolean = true;
 
     constructor() {
         this.initFlashInterfase();
+
+        this.server = ServerService.getInstance();
+
+        this.server.user.auth({ email: 'user@email', pass: 'pass'}, (res) => {
+            console.log(res);
+        })
     }
 
     private initFlashInterfase() {

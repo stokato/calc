@@ -12,8 +12,9 @@ export class ServerService {
     static isCreating: boolean = false;
     static instance: ServerService;
 
-    _f2p: any = F2p;
-    _issue: Issue;
+    private _f2p: any = F2p;
+    private  _issue: Issue;
+    private _user: User;
 
     constructor() {
         if(!ServerService.isCreating) {
@@ -27,6 +28,7 @@ export class ServerService {
         this._f2p.F2PInvoker(gw, defPack, uShort);
 
         this._issue = new Issue();
+        this._user = new User();
     }
 
     static getInstance() {
@@ -50,6 +52,10 @@ export class ServerService {
 
     get issue () {
         return this._issue;
+    }
+
+    get user () {
+        return this._user;
     }
 }
 
@@ -77,12 +83,12 @@ class BaseService {
                 }
             }
         };
+        console.log(this._service + ' ' + method + ' ' + ' ' + params);
 
         ServerService.getInstance().request([ this._service, method, callback, ...params ]);
     }
 
 }
-
 
 class Issue {
     private baseService : BaseService;
@@ -97,6 +103,18 @@ class Issue {
 
     public load (issueId: any, onResult: Function) {
         this.baseService.prepareAndCall('load', issueId, onResult);
+    }
+}
+
+class User {
+    private baseService : BaseService;
+
+    constructor() {
+        this.baseService = new BaseService('UserService');
+    }
+
+    public auth (issueId: any, onResult: Function) {
+        this.baseService.prepareAndCall('auth', issueId, onResult);
     }
 }
 

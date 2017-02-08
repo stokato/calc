@@ -13,12 +13,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require("@angular/core");
 var flash_service_1 = require("../services/flash.service");
+var server_service_1 = require("../services/server.service");
 var template = require('./window.component.html');
 var css = require('./window.component.css');
 var WindowComponent = (function () {
     function WindowComponent() {
         this.isHidden = true;
         this.initFlashInterfase();
+        this.server = server_service_1.ServerService.getInstance();
+        this.server.user.auth({ email: 'user@email', pass: 'pass' }, function (res) {
+            console.log(res);
+        });
     }
     WindowComponent.prototype.initFlashInterfase = function () {
         // Передаем флешке метод для открытия окна
@@ -45,7 +50,7 @@ WindowComponent = __decorate([
         selector: 'app-window',
         template: template,
         styles: [css],
-        providers: [flash_service_1.FlashService]
+        providers: [flash_service_1.FlashService, server_service_1.ServerService]
     }),
     __metadata("design:paramtypes", [])
 ], WindowComponent);

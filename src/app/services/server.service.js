@@ -25,6 +25,7 @@ var ServerService = ServerService_1 = (function () {
         var uShort = config.baseSettings.useShort;
         this._f2p.F2PInvoker(gw, defPack, uShort);
         this._issue = new Issue();
+        this._user = new User();
     }
     ServerService.getInstance = function () {
         if (ServerService_1.instance == null) {
@@ -44,6 +45,13 @@ var ServerService = ServerService_1 = (function () {
     Object.defineProperty(ServerService.prototype, "issue", {
         get: function () {
             return this._issue;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(ServerService.prototype, "user", {
+        get: function () {
+            return this._user;
         },
         enumerable: true,
         configurable: true
@@ -82,6 +90,7 @@ var BaseService = (function () {
                 }
             }
         };
+        console.log(this._service + ' ' + method + ' ' + ' ' + params);
         ServerService.getInstance().request([this._service, method, callback].concat(params));
     };
     return BaseService;
@@ -97,6 +106,15 @@ var Issue = (function () {
         this.baseService.prepareAndCall('load', issueId, onResult);
     };
     return Issue;
+}());
+var User = (function () {
+    function User() {
+        this.baseService = new BaseService('UserService');
+    }
+    User.prototype.auth = function (issueId, onResult) {
+        this.baseService.prepareAndCall('auth', issueId, onResult);
+    };
+    return User;
 }());
 var ServerService_1;
 //# sourceMappingURL=server.service.js.map

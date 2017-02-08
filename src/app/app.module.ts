@@ -11,6 +11,7 @@ import { TabsComponent, TabContent } from './tabs.component/tabs.component';
 import { TechnologicalTabComponent, AdvancedTabComponent } from './tab.component/tab.component';
 import { FormsModule } from '@angular/forms';
 import { WindowComponent} from './window.component/window.component';
+import { SWFComponent } from './swf.component/swf.component';
 
 @NgModule({
     imports: [
@@ -22,7 +23,8 @@ import { WindowComponent} from './window.component/window.component';
         TabContent,
         TechnologicalTabComponent,
         AdvancedTabComponent,
-        WindowComponent
+        WindowComponent,
+        SWFComponent
     ],
     bootstrap: [AppComponent]
 })

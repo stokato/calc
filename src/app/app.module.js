@@ -16,6 +16,7 @@ var tabs_component_1 = require("./tabs.component/tabs.component");
 var tab_component_1 = require("./tab.component/tab.component");
 var forms_1 = require("@angular/forms");
 var window_component_1 = require("./window.component/window.component");
+var swf_component_1 = require("./swf.component/swf.component");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -32,7 +33,8 @@ AppModule = __decorate([
             tabs_component_1.TabContent,
             tab_component_1.TechnologicalTabComponent,
             tab_component_1.AdvancedTabComponent,
-            window_component_1.WindowComponent
+            window_component_1.WindowComponent,
+            swf_component_1.SWFComponent
         ],
         bootstrap: [app_component_1.AppComponent]
     })

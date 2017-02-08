@@ -1,10 +1,24 @@
 {
   "baseSettings" : {
-    "gateway" : "server",
+    "gateway" : "http://192.168.2.2/ccalc/test/request.php",
     "defaultPackage" : "def",
     "useShort" : false
   },
   "flashSettings": {
-    "flashID" : "BridgeMovie"
+    "src" : "http://localhost:8080/src/assets/bridge.swf",
+    "width" : "400",
+    "height" : "200",
+    "version" : "9.0.0",
+    "expressInstallSwfurl" : "expressInstall.swf",
+    "flashID" : "BridgeMovie",
+    "play" : "true",
+    "loop" : "false",
+    "wmode" : "opaque",
+    "quality" : "high",
+    "allowScriptAccess" :"sameDomain",
+    "scale" : "exactfit",
+    "align" : "middle",
+    "id" : "FlashApp",
+    "name" : "FlashApp"
   }
 }

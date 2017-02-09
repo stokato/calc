@@ -2,6 +2,11 @@
  * Created by "s.t.o.k.a.t.o" on 06.02.2017.
  */
 "use strict";
+var __extends = (this && this.__extends) || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -26,6 +31,8 @@ var ServerService = ServerService_1 = (function () {
         this._f2p.F2PInvoker(gw, defPack, uShort);
         this._issue = new Issue();
         this._user = new User();
+        this._info = new Info();
+        this._manager = new Manager();
     }
     ServerService.getInstance = function () {
         if (ServerService_1.instance == null) {
@@ -56,6 +63,20 @@ var ServerService = ServerService_1 = (function () {
         enumerable: true,
         configurable: true
     });
+    Object.defineProperty(ServerService.prototype, "info", {
+        get: function () {
+            return this._info;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(ServerService.prototype, "manager", {
+        get: function () {
+            return this._manager;
+        },
+        enumerable: true,
+        configurable: true
+    });
     return ServerService;
 }());
 ServerService.isCreating = false;
@@ -78,8 +99,9 @@ var BaseService = (function () {
     };
     BaseService.prototype.call = function (method, params, onResult) {
         var callback = function (obj) {
-            if (obj.errno == F2p.ERRNO_AUTH_BLOCKED) {
-                window.location.reload();
+            if (obj.errno == F2p.F2PInvoker.ERRNO_AUTH_BLOCKED) {
+                // window.location.reload();
+                console.log(obj);
             }
             else {
                 try {
@@ -95,9 +117,17 @@ var BaseService = (function () {
     };
     return BaseService;
 }());
-var Issue = (function () {
+var Service = (function () {
+    function Service(serviceName) {
+        this.serviceName = serviceName;
+        this.baseService = new BaseService(serviceName);
+    }
+    return Service;
+}());
+var Issue = (function (_super) {
+    __extends(Issue, _super);
     function Issue() {
-        this.baseService = new BaseService('IssueService');
+        return _super.call(this, 'IssueService') || this;
     }
     Issue.prototype.compete = function (issueID, onResult) {
         this.baseService.prepareAndCall('complete', issueID, onResult);
@@ -106,15 +136,39 @@ var Issue = (function () {
         this.baseService.prepareAndCall('load', issueId, onResult);
     };
     return Issue;
-}());
-var User = (function () {
+}(Service));
+var User = (function (_super) {
+    __extends(User, _super);
     function User() {
-        this.baseService = new BaseService('UserService');
+        return _super.call(this, 'UserService') || this;
     }
-    User.prototype.auth = function (issueId, onResult) {
-        this.baseService.prepareAndCall('auth', issueId, onResult);
+    User.prototype.auth = function (onResult) {
+        this.baseService.prepareAndCall('auth', onResult);
     };
     return User;
-}());
+}(Service));
+var Info = (function (_super) {
+    __extends(Info, _super);
+    function Info() {
+        return _super.call(this, 'InfoService') || this;
+    }
+    Info.prototype.getSettings = function (onResult) {
+        this.baseService.prepareAndCall('getSettings', onResult);
+    };
+    return Info;
+}(Service));
+var Manager = (function (_super) {
+    __extends(Manager, _super);
+    function Manager() {
+        return _super.call(this, 'ManagerService') || this;
+    }
+    Manager.prototype.saveSettingElement = function (savingOption, onResult) {
+        this.baseService.prepareAndCall('saveSettingElement', savingOption, onResult);
+    };
+    Manager.prototype.saveSettings = function (settingsArray, onResult) {
+        this.baseService.prepareAndCall('saveSettings', settingsArray, onResult);
+    };
+    return Manager;
+}(Service));
 var ServerService_1;
 //# sourceMappingURL=server.service.js.map

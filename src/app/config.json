@@ -1,6 +1,6 @@
 {
   "baseSettings" : {
-    "gateway" : "http://192.168.2.2/ccalc/test/request.php",
+    "gateway" : "http://local.innim.ru/ccalc/flash2php/gateway.php",
     "defaultPackage" : "def",
     "useShort" : false
   },
@@ -20,5 +20,28 @@
     "align" : "middle",
     "id" : "FlashApp",
     "name" : "FlashApp"
+  },
+  "settingsDictionary": {
+    "types" : {
+      "technological" : 1
+    },
+    "fields" : {
+      "saveCalculationRoute"                    : { "uid": "tech_01_NBpXag", "type" : "1", "default" : false },
+      "profilesPackagesSpec"                    : { "uid": "tech_02_bjSgFq", "type" : "1", "default" : false },
+      "separateContoursBoxSpec"                 : { "uid": "tech_03_XBVAgD", "type" : "1", "default" : false },
+      "mosquitoNetsSpec"                        : { "uid": "tech_04_qoXeqv", "type" : "1", "default" : false },
+      "equalityOfTextures"                      : { "uid": "tech_05_HExDmz", "type" : "1", "default" : false },
+      "mirrorOptionsSelection"                  : { "uid": "tech_06_OoDMSs", "type" : "1", "default" : false },
+      "takeGrooveWithSidesCalculation"          : { "uid": "tech_07_lHWRhD", "type" : "1", "default" : false },
+      "checkMinRadiusOfBending"                 : { "uid": "tech_08_rhAaxB", "type" : "1", "default" : false },
+      "analizeContourAngularDeformation"        : { "uid": "tech_09_cjulkK", "type" : "1", "default" : false },
+      "rectangleFillsArea"                      : { "uid": "tech_10_kDDOnC", "type" : "1", "default" : false },
+      "minSideFillsBeadingsCalculate"           : { "uid": "tech_11_dYrlUT", "type" : "1", "default" : 0 },
+      "installCornerImpostlWith2L"              : { "uid": "tech_12_syMcdT", "type" : "1", "default" : false },
+      "notRoundProfileCount"                    : { "uid": "tech_13_lZompT", "type" : "1", "default" : false },
+      "activateDefCompoundsForAttachedProfiles" : { "uid": "tech_14_FsXSbB", "type" : "1", "default" : false },
+      "selectNewProfilesWithTexturePriority"    : { "uid": "tech_15_NTbNuy", "type" : "1", "default" : false },
+      "replaceAllFittingsWithProfileChanging"   : { "uid": "tech_16_dcHYsl", "type" : "1", "default" : false }
+    }
   }
 }

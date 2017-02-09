@@ -7,7 +7,7 @@ import {Component, ViewChild} from '@angular/core';
 import {WindowComponent} from "../window.component/window.component";
 
 const template = require('./app.component.html');
-const css      = require('../../assets/css/style.css');
+// const css      = require('../../assets/css/style.css');
 
 @Component({
     selector: 'my-app',
@@ -16,13 +16,5 @@ const css      = require('../../assets/css/style.css');
 })
 export class AppComponent {
 
-    @ViewChild('windowApp') windowComponent: WindowComponent;
 
-    constructor() {
-
-    }
-
-    openWindow() {
-        this.windowComponent.open()
-    }
 }

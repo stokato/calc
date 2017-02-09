@@ -225,6 +225,8 @@ var F2PInvoker = ru.vbinc.net.F2PInvoker = function( gateway, defaultPackage, us
             
             xhr.open( 'POST', host, true );
             xhr.setRequestHeader( 'Content-Type', 'application/x-www-form-urlencoded' );
+           // xhr.setRequestHeader('xhrFields', "{ 'withCredentials': true' }");
+           //  xhr.withCredentials = true;
             xhr.send( params ); 
             
                         

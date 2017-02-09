@@ -17,6 +17,7 @@ var tab_component_1 = require("./tab.component/tab.component");
 var forms_1 = require("@angular/forms");
 var window_component_1 = require("./window.component/window.component");
 var swf_component_1 = require("./swf.component/swf.component");
+var routes_1 = require("./routes");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -25,7 +26,7 @@ var AppModule = (function () {
 AppModule = __decorate([
     core_1.NgModule({
         imports: [
-            platform_browser_1.BrowserModule, forms_1.FormsModule, common_1.CommonModule
+            platform_browser_1.BrowserModule, forms_1.FormsModule, common_1.CommonModule, routes_1.routing
         ],
         declarations: [
             app_component_1.AppComponent,
@@ -34,7 +35,8 @@ AppModule = __decorate([
             tab_component_1.TechnologicalTabComponent,
             tab_component_1.AdvancedTabComponent,
             window_component_1.WindowComponent,
-            swf_component_1.SWFComponent
+            swf_component_1.SWFComponent,
+            routes_1.routedComponents
         ],
         bootstrap: [app_component_1.AppComponent]
     })

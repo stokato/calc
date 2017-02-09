@@ -4,7 +4,8 @@
 
 import {Component, Input, Output} from '@angular/core';
 import {FlashService} from "../services/flash.service";
-import {ServerService} from '../services/server.service';
+import {SettingsService} from '../services/settings.service';
+
 
 const template = require('./window.component.html');
 const css      = require('./window.component.css');
@@ -13,20 +14,14 @@ const css      = require('./window.component.css');
     selector: 'app-window',
     template: template,
     styles: [css],
-    providers: [FlashService, ServerService]
+    providers: [FlashService, SettingsService]
 })
 export class WindowComponent {
-    server : ServerService;
     isHidden: boolean = true;
+    settings: Array<Object>;
 
     constructor() {
         this.initFlashInterfase();
-
-        this.server = ServerService.getInstance();
-
-        this.server.user.auth({ email: 'user@email', pass: 'pass'}, (res) => {
-            console.log(res);
-        })
     }
 
     private initFlashInterfase() {
@@ -36,8 +31,12 @@ export class WindowComponent {
         })
     }
 
-    private saveSettings() {
-        //TODO: отправляем настройки на сервер
+    open() {
+        this.isHidden = false;
+    }
+
+    close() {
+        this.isHidden = true;
 
         // сообщяем что то флешке
         let value = "Received from JS";
@@ -45,11 +44,14 @@ export class WindowComponent {
         FlashService.call('sendFromJS', value);
     }
 
-    open() {
-        this.isHidden = false;
-    }
-
-    close() {
-        this.isHidden = true;
+    saveSettings() {
+        SettingsService.getInstance()
+            .save()
+            .then(res => {
+                console.log("Настройки сохранены");
+            },
+            error => {
+                console.log("Ошибка при сохранении настроек");
+            })
     }
 }

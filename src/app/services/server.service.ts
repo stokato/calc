@@ -15,6 +15,8 @@ export class ServerService {
     private _f2p: any = F2p;
     private  _issue: Issue;
     private _user: User;
+    private _info: Info;
+    private _manager: Manager;
 
     constructor() {
         if(!ServerService.isCreating) {
@@ -29,6 +31,8 @@ export class ServerService {
 
         this._issue = new Issue();
         this._user = new User();
+        this._info = new Info();
+        this._manager = new Manager();
     }
 
     static getInstance() {
@@ -57,6 +61,14 @@ export class ServerService {
     get user () {
         return this._user;
     }
+
+    get info () {
+        return this._info;
+    }
+
+    get manager () {
+        return this._manager;
+    }
 }
 
 class BaseService {
@@ -73,8 +85,9 @@ class BaseService {
     public call (method: string, params: Array<any>, onResult: Function) {
 
         let callback = ( obj ) => {
-            if (obj.errno == F2p.ERRNO_AUTH_BLOCKED) {
-                window.location.reload();
+            if (obj.errno == F2p.F2PInvoker.ERRNO_AUTH_BLOCKED) {
+                // window.location.reload();
+                console.log(obj);
             } else {
                 try {
                     onResult(obj);
@@ -90,11 +103,17 @@ class BaseService {
 
 }
 
-class Issue {
-    private baseService : BaseService;
+class Service {
+    protected baseService : BaseService;
 
+    constructor(protected serviceName: string) {
+        this.baseService = new BaseService(serviceName);
+    }
+}
+
+class Issue extends Service {
     constructor() {
-        this.baseService = new BaseService('IssueService');
+        super('IssueService');
     }
 
     public compete (issueID: any, onResult: Function) {
@@ -106,15 +125,36 @@ class Issue {
     }
 }
 
-class User {
-    private baseService : BaseService;
-
+class User extends Service {
     constructor() {
-        this.baseService = new BaseService('UserService');
+        super('UserService');
     }
 
-    public auth (issueId: any, onResult: Function) {
-        this.baseService.prepareAndCall('auth', issueId, onResult);
+    public auth (onResult: Function) {
+        this.baseService.prepareAndCall('auth', onResult);
     }
 }
 
+class Info extends Service {
+    constructor() {
+        super('InfoService');
+    }
+
+    public getSettings (onResult: Function) {
+        this.baseService.prepareAndCall('getSettings', onResult);
+    }
+}
+
+class Manager extends Service {
+    constructor() {
+        super('ManagerService');
+    }
+
+    public saveSettingElement (savingOption: any, onResult: Function) {
+        this.baseService.prepareAndCall('saveSettingElement', savingOption, onResult);
+    }
+
+    public saveSettings (settingsArray: Array<any>, onResult: Function) {
+        this.baseService.prepareAndCall('saveSettings', settingsArray, onResult);
+    }
+}

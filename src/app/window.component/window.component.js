@@ -13,17 +13,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require("@angular/core");
 var flash_service_1 = require("../services/flash.service");
-var server_service_1 = require("../services/server.service");
+var settings_service_1 = require("../services/settings.service");
 var template = require('./window.component.html');
 var css = require('./window.component.css');
 var WindowComponent = (function () {
     function WindowComponent() {
         this.isHidden = true;
         this.initFlashInterfase();
-        this.server = server_service_1.ServerService.getInstance();
-        this.server.user.auth({ email: 'user@email', pass: 'pass' }, function (res) {
-            console.log(res);
-        });
     }
     WindowComponent.prototype.initFlashInterfase = function () {
         // Передаем флешке метод для открытия окна
@@ -31,17 +27,23 @@ var WindowComponent = (function () {
             console.log(txt);
         });
     };
-    WindowComponent.prototype.saveSettings = function () {
-        //TODO: отправляем настройки на сервер
-        // сообщяем что то флешке
-        var value = "Received from JS";
-        flash_service_1.FlashService.call('sendFromJS', value);
-    };
     WindowComponent.prototype.open = function () {
         this.isHidden = false;
     };
     WindowComponent.prototype.close = function () {
         this.isHidden = true;
+        // сообщяем что то флешке
+        var value = "Received from JS";
+        flash_service_1.FlashService.call('sendFromJS', value);
+    };
+    WindowComponent.prototype.saveSettings = function () {
+        settings_service_1.SettingsService.getInstance()
+            .save()
+            .then(function (res) {
+            console.log("Настройки сохранены");
+        }, function (error) {
+            console.log("Ошибка при сохранении настроек");
+        });
     };
     return WindowComponent;
 }());
@@ -50,7 +52,7 @@ WindowComponent = __decorate([
         selector: 'app-window',
         template: template,
         styles: [css],
-        providers: [flash_service_1.FlashService, server_service_1.ServerService]
+        providers: [flash_service_1.FlashService, settings_service_1.SettingsService]
     }),
     __metadata("design:paramtypes", [])
 ], WindowComponent);

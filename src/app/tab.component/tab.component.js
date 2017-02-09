@@ -17,6 +17,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
+var settings_service_1 = require("../services/settings.service");
 var technoTemplate = require('./tab.component.html');
 var css = require('./tab.component.css');
 var TabComponent = (function () {
@@ -29,16 +30,54 @@ var TechnologicalTabComponent = (function (_super) {
     __extends(TechnologicalTabComponent, _super);
     function TechnologicalTabComponent() {
         var _this = _super.call(this) || this;
-        _this.fittingsSidesCalculation = true;
+        _this.sService = settings_service_1.SettingsService.getInstance();
+        if (_this.sService.isLoaded) {
+            _this.initFields();
+        }
+        else {
+            _this.sService.load()
+                .then(function (res) {
+                _this.initFields();
+            }, function (error) {
+                alert(error);
+            });
+        }
         return _this;
     }
+    TechnologicalTabComponent.prototype.initFields = function () {
+        this.saveCalculationRoute = this.sService.getOption('saveCalculationRoute');
+        this.profilesPackagesSpec = this.sService.getOption('profilesPackagesSpec');
+        this.separateContoursBoxSpec = this.sService.getOption('separateContoursBoxSpec');
+        this.mosquitoNetsSpec = this.sService.getOption('mosquitoNetsSpec');
+        this.equalityOfTextures = this.sService.getOption('equalityOfTextures');
+        this.mirrorOptionsSelection = this.sService.getOption('mirrorOptionsSelection');
+        this.takeGrooveWithSidesCalculation = this.sService.getOption('takeGrooveWithSidesCalculation');
+        this.checkMinRadiusOfBending = this.sService.getOption('checkMinRadiusOfBending');
+        this.analizeContourAngularDeformation = this.sService.getOption('analizeContourAngularDeformation');
+        this.rectangleFillsArea = this.sService.getOption('rectangleFillsArea');
+        this.minSideFillsBeadingsCalculate = this.sService.getOption('minSideFillsBeadingsCalculate');
+        this.minSideFillsBeadingsCalculateActive = (this.minSideFillsBeadingsCalculate > 0);
+        this.installCornerImpostlWith2L = this.sService.getOption('installCornerImpostlWith2L');
+        this.notRoundProfileCount = this.sService.getOption('notRoundProfileCount');
+        this.activateDefCompoundsForAttachedProfiles = this.sService.getOption('activateDefCompoundsForAttachedProfiles');
+        this.selectNewProfilesWithTexturePriority = this.sService.getOption('selectNewProfilesWithTexturePriority');
+        this.replaceAllFittingsWithProfileChanging = this.sService.getOption('replaceAllFittingsWithProfileChanging');
+    };
+    TechnologicalTabComponent.prototype.imputOption = function (option, value) {
+        this[option] = value;
+        console.log(option);
+        console.log(this.minSideFillsBeadingsCalculate);
+        this.minSideFillsBeadingsCalculateActive = (this.minSideFillsBeadingsCalculate > 0);
+        this.sService.setOption(option, value);
+    };
     return TechnologicalTabComponent;
 }(TabComponent));
 TechnologicalTabComponent = __decorate([
     core_1.Component({
         selector: 'tab-technological',
         template: technoTemplate,
-        styles: [css]
+        styles: [css],
+        providers: [settings_service_1.SettingsService]
     }),
     __metadata("design:paramtypes", [])
 ], TechnologicalTabComponent);

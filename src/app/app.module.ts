@@ -12,10 +12,14 @@ import { TechnologicalTabComponent, AdvancedTabComponent } from './tab.component
 import { FormsModule } from '@angular/forms';
 import { WindowComponent} from './window.component/window.component';
 import { SWFComponent } from './swf.component/swf.component';
+import { AuthComponent} from './auth.component/auth.component';
+import { WorkPlaceComponent} from './workplace.component/workplace.component';
+
+import { routing, routedComponents } from './routes';
 
 @NgModule({
     imports: [
-        BrowserModule, FormsModule, CommonModule
+        BrowserModule, FormsModule, CommonModule, routing
     ],
     declarations: [
         AppComponent,
@@ -24,7 +28,8 @@ import { SWFComponent } from './swf.component/swf.component';
         TechnologicalTabComponent,
         AdvancedTabComponent,
         WindowComponent,
-        SWFComponent
+        SWFComponent,
+        routedComponents
     ],
     bootstrap: [AppComponent]
 })

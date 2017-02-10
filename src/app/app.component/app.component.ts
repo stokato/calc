@@ -5,6 +5,7 @@
 
 import {Component, ViewChild} from '@angular/core';
 import {WindowComponent} from "../window.component/window.component";
+// import { AuthService } from '../services/auth.service';
 
 const template = require('./app.component.html');
 // const css      = require('../../assets/css/style.css');
@@ -12,9 +13,15 @@ const template = require('./app.component.html');
 @Component({
     selector: 'my-app',
     template: template,
-    styles: [  ]
+    styles: [  ],
+    // providers: [AuthService]
 })
 export class AppComponent {
 
+    constructor () {
+
+
+        // console.log();
+    }
 
 }

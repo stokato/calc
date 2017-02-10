@@ -44,6 +44,14 @@ var WindowComponent = (function () {
         }, function (error) {
             console.log("Ошибка при сохранении настроек");
         });
+        // SettingsService.getInstance()
+        //     .saveOption()
+        //     .then(res => {
+        //         console.log("ok");
+        //     },
+        //     error => {
+        //         console.log("no");
+        //     })
     };
     return WindowComponent;
 }());

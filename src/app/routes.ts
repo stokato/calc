@@ -7,6 +7,8 @@ import { Routes, RouterModule } from '@angular/router';
 import {AuthComponent} from './auth.component/auth.component';
 import {WorkPlaceComponent} from './workplace.component/workplace.component';
 
+import { AuthGuard } from './services/auth-guard.service';
+
 const appRoutes: Routes = [
     {
         path: '',
@@ -20,7 +22,8 @@ const appRoutes: Routes = [
     },
     {
         path: 'workplace',
-        component: WorkPlaceComponent
+        component: WorkPlaceComponent,
+        canActivate: [ AuthGuard ]
     }
 ];
 

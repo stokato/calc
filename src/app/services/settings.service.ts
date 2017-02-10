@@ -70,6 +70,14 @@ export class SettingsService {
         });
     }
 
+    saveOption () {
+        return new Promise((resolve, reject) => {
+            this.server.manager.saveSettingElement({uid: 'test', type : 0, value: true}, (res) => {
+                console.log(res);
+            })
+        })
+    }
+
     setOption( key: string, value: any ) {
 
             let field = this.dictionary.fields[key];

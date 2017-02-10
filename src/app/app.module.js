@@ -17,6 +17,8 @@ var tab_component_1 = require("./tab.component/tab.component");
 var forms_1 = require("@angular/forms");
 var window_component_1 = require("./window.component/window.component");
 var swf_component_1 = require("./swf.component/swf.component");
+var auth_guard_service_1 = require("./services/auth-guard.service");
+var user_service_1 = require("./services/user.service");
 var routes_1 = require("./routes");
 var AppModule = (function () {
     function AppModule() {
@@ -38,6 +40,7 @@ AppModule = __decorate([
             swf_component_1.SWFComponent,
             routes_1.routedComponents
         ],
+        providers: [auth_guard_service_1.AuthGuard, user_service_1.UserService],
         bootstrap: [app_component_1.AppComponent]
     })
 ], AppModule);

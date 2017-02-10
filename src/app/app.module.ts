@@ -12,8 +12,8 @@ import { TechnologicalTabComponent, AdvancedTabComponent } from './tab.component
 import { FormsModule } from '@angular/forms';
 import { WindowComponent} from './window.component/window.component';
 import { SWFComponent } from './swf.component/swf.component';
-import { AuthComponent} from './auth.component/auth.component';
-import { WorkPlaceComponent} from './workplace.component/workplace.component';
+import { AuthGuard } from './services/auth-guard.service';
+import { UserService } from './services/user.service';
 
 import { routing, routedComponents } from './routes';
 
@@ -31,6 +31,7 @@ import { routing, routedComponents } from './routes';
         SWFComponent,
         routedComponents
     ],
+    providers: [AuthGuard, UserService],
     bootstrap: [AppComponent]
 })
 export class AppModule {}

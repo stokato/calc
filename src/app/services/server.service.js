@@ -34,6 +34,9 @@ var ServerService = ServerService_1 = (function () {
         this._info = new Info();
         this._manager = new Manager();
     }
+    ServerService.prototype.setSID = function (sid) {
+        this._f2p.setSid(sid);
+    };
     ServerService.getInstance = function () {
         if (ServerService_1.instance == null) {
             ServerService_1.isCreating = true;
@@ -108,6 +111,7 @@ var BaseService = (function () {
                     onResult(obj);
                 }
                 catch (e) {
+                    console.log(e);
                     ServerService.err({ error: 'Ошибка при обработке ответа' });
                 }
             }
@@ -142,8 +146,11 @@ var User = (function (_super) {
     function User() {
         return _super.call(this, 'UserService') || this;
     }
-    User.prototype.auth = function (onResult) {
-        this.baseService.prepareAndCall('auth', onResult);
+    User.prototype.auth = function (email, password, onResult) {
+        this.baseService.prepareAndCall('auth', email, password, onResult);
+    };
+    User.prototype.logout = function (onResult) {
+        this.baseService.prepareAndCall('logout', onResult);
     };
     return User;
 }(Service));

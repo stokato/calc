@@ -11,7 +11,6 @@ if (!('net' in ru.vbinc)) ru.vbinc.net = {};
  * @param {String} gateway адрес сервиса для запросов
  * @param {String} [defaultPackage=''] адрес сервиса для запросов
  * @param {Boolean} [useShort=false] использовать которкие имена или нет
- * @version 0.5 beta
  */
 var F2PInvoker = ru.vbinc.net.F2PInvoker = function( gateway, defaultPackage, useShort )
 {    
@@ -89,6 +88,14 @@ var F2PInvoker = ru.vbinc.net.F2PInvoker = function( gateway, defaultPackage, us
      * @type String
      */
     var host = '';    
+    
+    /**
+     * Идентификатор сессии
+     * @private
+     * @type String
+     */
+    var sid = null;    
+
     /**
      * Package сервисов
      * @private
@@ -151,6 +158,7 @@ var F2PInvoker = ru.vbinc.net.F2PInvoker = function( gateway, defaultPackage, us
             _paramsParam  = 'params';
         }
                               
+        //xhr.open( 'POST', host, true );
         xhr.onreadystatechange = function(){ 
             // readyState может принимать следующие значения
             // 0 - Unitialized
@@ -160,6 +168,8 @@ var F2PInvoker = ru.vbinc.net.F2PInvoker = function( gateway, defaultPackage, us
             // 4 - Complete
             if (xhr.readyState == 4) onRequestComplete();
         };
+
+        //xhr.setRequestHeader( 'Content-Type', /*'text/plain' );//*/'application/x-www-form-urlencoded' );
      })();     
     
     /**
@@ -175,7 +185,7 @@ var F2PInvoker = ru.vbinc.net.F2PInvoker = function( gateway, defaultPackage, us
      * <tt>F2PInvoket.ERRNO_PARSE_RESULT</tt>)
      * @param _param любое число параметров для передачи на сервер
      */
-    this.request = function( service, method, onResult, _param ) {       
+    this.request = function( service, method, onResult, _param ) {
         var params = [];
         for(var i=3; i<arguments.length; i++) {
             params.push( arguments[i] );
@@ -201,6 +211,14 @@ var F2PInvoker = ru.vbinc.net.F2PInvoker = function( gateway, defaultPackage, us
     this.setTimeout = function( value ) {
         timeout = value;
     };
+
+    /**
+     * Устанавливает идентификатор сессии, который должен быть отправлен на сервер
+     * @param string value идентификатор сессии
+     */
+    this.setSid = function (value) {
+        sid = value;
+    };
     
     var sendRequest = function() {
         // если в очереди есть элементы 
@@ -222,21 +240,20 @@ var F2PInvoker = ru.vbinc.net.F2PInvoker = function( gateway, defaultPackage, us
                     ( params != '' ? '&' + _paramsParam + '=[' + encodeURIComponent( params ) + ']' : '' );
                                     
             timeoutId = setTimeout( onTimeout, timeout * 1000 );
+
+            var url = host;
+            if (sid)
+                url += '?sid=' + sid;
             
-            xhr.open( 'POST', host, true );
-            xhr.setRequestHeader( 'Content-Type', 'application/x-www-form-urlencoded' );
-           // xhr.setRequestHeader('xhrFields', "{ 'withCredentials': true' }");
-           //  xhr.withCredentials = true;
-            xhr.send( params ); 
-            
-                        
+            xhr.open( 'POST', url, true );
+            xhr.setRequestHeader( 'Content-Type', /*'text/plain' );//*/'application/x-www-form-urlencoded' );
+            xhr.send( params );                        
         }
     };
     
     var onRequestComplete = function() {       
         // если статус ответа 200 - значит пришёл корректный ответ
         if (xhr.status == 200) {                       
-            console.log(xhr.responseText); // консоль
             try {
                 var result = JSON.parse( xhr.responseText );                        
             } catch (e) {
@@ -256,7 +273,6 @@ var F2PInvoker = ru.vbinc.net.F2PInvoker = function( gateway, defaultPackage, us
     };
     
     var onError = function( errno ) {
-
         callHandler( { errno : errno } ); 
         requestComplete();
     };
@@ -266,6 +282,7 @@ var F2PInvoker = ru.vbinc.net.F2PInvoker = function( gateway, defaultPackage, us
             queue[0].h( obj );
             return true;
        /* } catch (e) {
+
             return false;
         }*/
     };

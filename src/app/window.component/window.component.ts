@@ -5,6 +5,7 @@
 import {Component, Input, Output} from '@angular/core';
 import {FlashService} from "../services/flash.service";
 import {SettingsService} from '../services/settings.service';
+import {error} from "util";
 
 
 const template = require('./window.component.html');
@@ -52,6 +53,17 @@ export class WindowComponent {
             },
             error => {
                 console.log("Ошибка при сохранении настроек");
-            })
+            });
+
+        // SettingsService.getInstance()
+        //     .saveOption()
+        //     .then(res => {
+        //         console.log("ok");
+        //     },
+        //     error => {
+        //         console.log("no");
+        //     })
     }
+
+
 }

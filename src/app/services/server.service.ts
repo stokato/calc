@@ -3,6 +3,7 @@
  */
 
 import {Injectable} from "@angular/core";
+import { AuthHttp } from 'angular2-jwt';
 
 const config = require('../config.json');
 const F2p = require('../../assets/vendor/F2PInvoker.js');
@@ -33,6 +34,10 @@ export class ServerService {
         this._user = new User();
         this._info = new Info();
         this._manager = new Manager();
+    }
+
+    setSID (sid) {
+        this._f2p.setSid(sid);
     }
 
     static getInstance() {
@@ -92,6 +97,7 @@ class BaseService {
                 try {
                     onResult(obj);
                 } catch (e) {
+                    console.log(e);
                     ServerService.err({error: 'Ошибка при обработке ответа'})
                 }
             }
@@ -130,8 +136,12 @@ class User extends Service {
         super('UserService');
     }
 
-    public auth (onResult: Function) {
-        this.baseService.prepareAndCall('auth', onResult);
+    public auth (email: any, password: any, onResult: Function) {
+        this.baseService.prepareAndCall('auth', email, password, onResult);
+    }
+
+    public logout (onResult: Function) {
+        this.baseService.prepareAndCall('logout', onResult);
     }
 }
 

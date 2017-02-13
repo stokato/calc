@@ -17,7 +17,7 @@ var template = require('./app.component.html');
 // const css      = require('../../assets/css/style.css');
 var AppComponent = (function () {
     function AppComponent() {
-        // console.log();
+        // debugger;
     }
     return AppComponent;
 }());

@@ -14,7 +14,7 @@ export class SettingsService {
     static instance: SettingsService;
 
     server: ServerService;
-    settings: Array<any> = null;
+    _settings: Array<any> = null;
     dictionary: any;
     private _isLoaded:boolean = false;
 
@@ -34,7 +34,7 @@ export class SettingsService {
         //     });
     }
 
-    static getInstance() {
+    static getInstance(): SettingsService {
         if(SettingsService.instance == null) {
             SettingsService.isCreating = true;
             SettingsService.instance = new SettingsService();
@@ -48,7 +48,7 @@ export class SettingsService {
         return new Promise((resolve, reject) => {
             this.server.info.getSettings((res) => {
                 if(res && res.list) {
-                    this.settings = res.list;
+                    this._settings = res.list;
                     this._isLoaded = true;
                     resolve();
                 } else {
@@ -58,13 +58,13 @@ export class SettingsService {
         });
     };
 
-    get isLoaded () {
+    get isLoaded (): boolean {
         return this._isLoaded;
     }
 
     save () {
         return new Promise((resolve, reject) => {
-            this.server.manager.saveSettings(this.settings, (res) => {
+            this.server.manager.saveSettings(this._settings, (res) => {
                 resolve(res);
             });
         });
@@ -76,6 +76,31 @@ export class SettingsService {
                 console.log(res);
             })
         })
+    }
+
+    get settings () {
+
+        let settings = [];
+
+        for(let key in this.dictionary.fields) {
+            let field = this.dictionary.fields[key];
+            let option = this.getOptionByUID(field.uid);
+
+            if(option) {
+                settings.push(option);
+            } else {
+
+                settings.push({
+                    uid: field.uid,
+                    type: field.type,
+                    value: field.default
+                });
+            }
+        }
+
+        console.log(settings);
+
+        return settings;
     }
 
     setOption( key: string, value: any ) {
@@ -93,7 +118,7 @@ export class SettingsService {
             if(option) {
                 option.value = value;
             } else {
-                this.settings.push({
+                this._settings.push({
                     uid: field.uid,
                     type: field.type,
                     value: value
@@ -101,10 +126,10 @@ export class SettingsService {
             }
     }
 
-    // getOption( key: string ) {
+    // getOptionValue( key: string ) {
     //
     //     return new Promise((resolve, reject) => {
-    //        if(this.settings == null) {
+    //        if(this._settings == null) {
     //            this.load()
     //                .then(res => {
     //                     return this.getLoadedOption(key);
@@ -144,7 +169,7 @@ export class SettingsService {
     //         if(option) {
     //             option.value = value;
     //         } else {
-    //             this.settings.push({
+    //             this._settings.push({
     //                 uid: field.uid,
     //                 type: field.type,
     //                 value: value
@@ -155,7 +180,7 @@ export class SettingsService {
     //     });
     // }
 
-    getOption( key: string ) {
+    getOptionValue(key: string ) {
 
             let field = this.dictionary.fields[key];
             if(!field) {
@@ -195,9 +220,9 @@ export class SettingsService {
     // }
 
     private getOptionByUID(uid: string) {
-        for(let i = 0; i < this.settings.length; i++) {
-            if(this.settings[i].uid == uid) {
-                return this.settings[i];
+        for(let i = 0; i < this._settings.length; i++) {
+            if(this._settings[i].uid == uid) {
+                return this._settings[i];
             }
         }
 

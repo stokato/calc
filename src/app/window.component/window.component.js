@@ -18,23 +18,45 @@ var template = require('./window.component.html');
 var css = require('./window.component.css');
 var WindowComponent = (function () {
     function WindowComponent() {
+        var _this = this;
         this.isHidden = true;
+        this.sService = settings_service_1.SettingsService.getInstance();
         this.initFlashInterfase();
+        if (this.sService.isLoaded) {
+            this.isActive = true;
+        }
+        else {
+            this.sService.load()
+                .then(function (res) {
+                _this.isActive = true;
+            }, function (error) {
+                alert(error);
+            });
+        }
     }
     WindowComponent.prototype.initFlashInterfase = function () {
-        // Передаем флешке метод для открытия окна
+        var _this = this;
         flash_service_1.FlashService.addMethod('recieveFromFlash', function (txt) {
             console.log(txt);
         });
+        flash_service_1.FlashService.addMethod('getSettings', function () {
+            if (_this.isActive) {
+                return _this.sService.settings;
+            }
+            return false;
+        });
     };
     WindowComponent.prototype.open = function () {
-        this.isHidden = false;
+        if (this.isActive) {
+            this.isHidden = false;
+        }
+        this.sService.settings;
     };
     WindowComponent.prototype.close = function () {
         this.isHidden = true;
         // сообщяем что то флешке
-        var value = "Received from JS";
-        flash_service_1.FlashService.call('sendFromJS', value);
+        // let value = "Received from JS";
+        // FlashService.call('sendFromJS', value);
     };
     WindowComponent.prototype.saveSettings = function () {
         settings_service_1.SettingsService.getInstance()
@@ -44,14 +66,6 @@ var WindowComponent = (function () {
         }, function (error) {
             console.log("Ошибка при сохранении настроек");
         });
-        // SettingsService.getInstance()
-        //     .saveOption()
-        //     .then(res => {
-        //         console.log("ok");
-        //     },
-        //     error => {
-        //         console.log("no");
-        //     })
     };
     return WindowComponent;
 }());

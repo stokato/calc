@@ -45,25 +45,25 @@ var TechnologicalTabComponent = (function (_super) {
         return _this;
     }
     TechnologicalTabComponent.prototype.initFields = function () {
-        this.saveCalculationRoute = this.sService.getOption('saveCalculationRoute');
-        this.profilesPackagesSpec = this.sService.getOption('profilesPackagesSpec');
-        this.separateContoursBoxSpec = this.sService.getOption('separateContoursBoxSpec');
-        this.mosquitoNetsSpec = this.sService.getOption('mosquitoNetsSpec');
-        this.equalityOfTextures = this.sService.getOption('equalityOfTextures');
-        this.mirrorOptionsSelection = this.sService.getOption('mirrorOptionsSelection');
-        this.takeGrooveWithSidesCalculation = this.sService.getOption('takeGrooveWithSidesCalculation');
-        this.checkMinRadiusOfBending = this.sService.getOption('checkMinRadiusOfBending');
-        this.analizeContourAngularDeformation = this.sService.getOption('analizeContourAngularDeformation');
-        this.rectangleFillsArea = this.sService.getOption('rectangleFillsArea');
-        this.minSideFillsBeadingsCalculate = this.sService.getOption('minSideFillsBeadingsCalculate');
+        this.saveCalculationRoute = this.sService.getOptionValue('saveCalculationRoute');
+        this.profilesPackagesSpec = this.sService.getOptionValue('profilesPackagesSpec');
+        this.separateContoursBoxSpec = this.sService.getOptionValue('separateContoursBoxSpec');
+        this.mosquitoNetsSpec = this.sService.getOptionValue('mosquitoNetsSpec');
+        this.equalityOfTextures = this.sService.getOptionValue('equalityOfTextures');
+        this.mirrorOptionsSelection = this.sService.getOptionValue('mirrorOptionsSelection');
+        this.takeGrooveWithSidesCalculation = this.sService.getOptionValue('takeGrooveWithSidesCalculation');
+        this.checkMinRadiusOfBending = this.sService.getOptionValue('checkMinRadiusOfBending');
+        this.analizeContourAngularDeformation = this.sService.getOptionValue('analizeContourAngularDeformation');
+        this.rectangleFillsArea = this.sService.getOptionValue('rectangleFillsArea');
+        this.minSideFillsBeadingsCalculate = this.sService.getOptionValue('minSideFillsBeadingsCalculate');
         this.minSideFillsBeadingsCalculateActive = (this.minSideFillsBeadingsCalculate > 0);
-        this.installCornerImpostlWith2L = this.sService.getOption('installCornerImpostlWith2L');
-        this.notRoundProfileCount = this.sService.getOption('notRoundProfileCount');
-        this.activateDefCompoundsForAttachedProfiles = this.sService.getOption('activateDefCompoundsForAttachedProfiles');
-        this.selectNewProfilesWithTexturePriority = this.sService.getOption('selectNewProfilesWithTexturePriority');
-        this.replaceAllFittingsWithProfileChanging = this.sService.getOption('replaceAllFittingsWithProfileChanging');
+        this.installCornerImpostlWith2L = this.sService.getOptionValue('installCornerImpostlWith2L');
+        this.notRoundProfileCount = this.sService.getOptionValue('notRoundProfileCount');
+        this.activateDefCompoundsForAttachedProfiles = this.sService.getOptionValue('activateDefCompoundsForAttachedProfiles');
+        this.selectNewProfilesWithTexturePriority = this.sService.getOptionValue('selectNewProfilesWithTexturePriority');
+        this.replaceAllFittingsWithProfileChanging = this.sService.getOptionValue('replaceAllFittingsWithProfileChanging');
     };
-    TechnologicalTabComponent.prototype.imputOption = function (option, value) {
+    TechnologicalTabComponent.prototype.inputOption = function (option, value) {
         this[option] = value;
         console.log(option);
         console.log(this.minSideFillsBeadingsCalculate);

@@ -2,10 +2,9 @@
  * Created by "s.t.o.k.a.t.o" on 07.02.2017.
  */
 
-import {Component, Input, Output} from '@angular/core';
+import {Component} from '@angular/core';
 import {FlashService} from "../services/flash.service";
 import {SettingsService} from '../services/settings.service';
-import {error} from "util";
 
 
 const template = require('./window.component.html');
@@ -19,30 +18,56 @@ const css      = require('./window.component.css');
 })
 export class WindowComponent {
     isHidden: boolean = true;
-    settings: Array<Object>;
+    isActive: boolean;
+    sService: SettingsService;
 
     constructor() {
+
+        this.sService = SettingsService.getInstance();
+
         this.initFlashInterfase();
+
+        if(this.sService.isLoaded) {
+            this.isActive = true;
+        } else {
+            this.sService.load()
+                .then(res => {
+                    this.isActive = true;
+                },
+                error => {
+                    alert(error);
+                });
+        }
     }
 
     private initFlashInterfase() {
-        // Передаем флешке метод для открытия окна
         FlashService.addMethod('recieveFromFlash', (txt) => {
             console.log(txt);
-        })
+        });
+
+        FlashService.addMethod('getSettings', () => {
+            if(this.isActive) {
+                return this.sService.settings;
+            }
+            return false;
+        });
     }
 
     open() {
-        this.isHidden = false;
+        if(this.isActive) {
+            this.isHidden = false;
+        }
+
+        this.sService.settings;
     }
 
     close() {
         this.isHidden = true;
 
         // сообщяем что то флешке
-        let value = "Received from JS";
+        // let value = "Received from JS";
 
-        FlashService.call('sendFromJS', value);
+        // FlashService.call('sendFromJS', value);
     }
 
     saveSettings() {
@@ -55,14 +80,6 @@ export class WindowComponent {
                 console.log("Ошибка при сохранении настроек");
             });
 
-        // SettingsService.getInstance()
-        //     .saveOption()
-        //     .then(res => {
-        //         console.log("ok");
-        //     },
-        //     error => {
-        //         console.log("no");
-        //     })
     }
 
 

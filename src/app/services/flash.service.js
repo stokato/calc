@@ -24,7 +24,11 @@ var FlashService = (function () {
     };
     ;
     FlashService.addMethod = function (method, handler) {
-        window[method] = handler;
+        var flashApi = config.baseSettings.flashApi;
+        if (!window[flashApi]) {
+            window[flashApi] = {};
+        }
+        window[flashApi][method] = handler;
     };
     return FlashService;
 }());

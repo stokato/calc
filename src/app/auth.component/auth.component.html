@@ -1,5 +1,7 @@
-<div>
-  <label>email<input type="text" [value]="email" (input)="email = $event.target.value" /></label><br>
-  <label>password<input type="password" [value]="password" (input)="password = $event.target.value" /></label>
-  <br><button (click)="onSubmit()">Войти</button>
+<div class="parent">
+  <div class="block">
+    <label>email<input type="text" [value]="email" (input)="email = $event.target.value" /></label><br>
+    <label>password<input type="password" [value]="password" (input)="password = $event.target.value" /></label>
+    <br><button (click)="onSubmit()">Войти</button>
+  </div>
 </div>

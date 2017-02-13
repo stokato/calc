@@ -11,12 +11,6 @@ import { AuthGuard } from './services/auth-guard.service';
 
 const appRoutes: Routes = [
     {
-        path: '',
-        redirectTo: '/auth',
-        pathMatch: 'full'
-    },
-
-    {
         path: 'auth',
         component: AuthComponent
     },
@@ -24,6 +18,11 @@ const appRoutes: Routes = [
         path: 'workplace',
         component: WorkPlaceComponent,
         canActivate: [ AuthGuard ]
+    },
+    {
+        path: '',
+        redirectTo: '/auth',
+        pathMatch: 'full'
     }
 ];
 

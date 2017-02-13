@@ -40,7 +40,7 @@ export class ServerService {
         this._f2p.setSid(sid);
     }
 
-    static getInstance() {
+    static getInstance(): ServerService {
         if(ServerService.instance == null) {
             ServerService.isCreating = true;
             ServerService.instance = new ServerService();

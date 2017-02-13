@@ -4,6 +4,7 @@
 
 import {Component} from "@angular/core";
 
+
 import {
     Router,
     Event as RouterEvent,
@@ -16,16 +17,23 @@ import {
 const swfObject = require('swfobject');
 const config    = require('../config.json');
 
+const protocol = config.baseSettings.protocol;
+
+const template = require('./swf.component.html');
+const css = require('./swf.component.css');
+
 @Component({
     selector: 'app-swf',
-    template: `<div id="BridgeMovie"><p>Loading swf...</p></div>`
+    template: template,
+    styles: [ css ]
 })
 export class SWFComponent {
     swf: any = swfObject;
-
+    protocol: any;
     loading: boolean;
 
     constructor(private router: Router) {
+        this.protocol = protocol;
 
         router.events.subscribe((event: RouterEvent) => {
             this.navigationInterceptor(event);
@@ -53,23 +61,33 @@ export class SWFComponent {
 
     loadSWF () {
 
-        let st = config.flashSettings;
+        // swfobject.createCSS("#flashContent", "display:block;text-align:left;");
 
-        let flashvars = {};
+
+        let st = config.flashSettings.desktop;
+
+        let flashvars = {
+            "f2p"       : config.baseSettings.gateway,
+            "uploadUrl" : st.upladUrl,
+            "imageUrl"  : st.imageUrl,
+        };
 
         let params = {
-            [st.play] : st.play,
-            [st.loop] : st.loop,
-            [st.wmode] : st.wmode,
-            [st.quality] : st.quality,
-            [st.allowScriptAccess] : st.allowScriptAccess,
-            [st.scale] : st.scale,
-            [st.align] : st.align
+            'play'              : st.play,
+            'loop'              : st.loop,
+            'wmode'             : st.wmode,
+            'quality'           : st.quality,
+            'allowScriptAccess' : st.allowScriptAccess,
+            'allowFullScreen'   : st.allowFullScreen,
+            'scale'             : st.scale,
+            'align'             : st.align,
+            'bgcolor'           : st.bgcolor
         };
 
         let attributes = {
-            // [st.id] : st.id,
-            // [st.name] : st.name
+            'id'    : st.id,
+            'name'  : st.name,
+            'align' : st.align
         };
 
         let flash = null;
@@ -80,7 +98,7 @@ export class SWFComponent {
             st.width,
             st.height,
             st.version,
-            st.expressInstallSwfurl,
+            st.xiSwfUrlStr,
             flashvars,
             params,
             attributes, function(e) { flash = e.ref; });

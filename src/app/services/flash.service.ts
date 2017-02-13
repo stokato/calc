@@ -21,6 +21,13 @@ export class FlashService {
     };
 
     static addMethod (method: string, handler: Function) {
-        window[method] = handler;
+
+        let flashApi = config.baseSettings.flashApi;
+
+        if(!window[flashApi]) {
+            window[flashApi] = {};
+        }
+
+        window[flashApi][method] = handler;
     }
 }

@@ -7,11 +7,12 @@ import {UserService} from "../services/user.service";
 import {Router} from "@angular/router";
 
 const template = require('./auth.component.html');
+const css      = require('./auth.component.css');
 
 @Component({
     selector: 'app-auth',
     template: template,
-    styles: [],
+    styles: [ css ],
     providers: [UserService]
 })
 export class AuthComponent {

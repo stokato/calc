@@ -15,11 +15,15 @@ var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
 var swfObject = require('swfobject');
 var config = require('../config.json');
+var protocol = config.baseSettings.protocol;
+var template = require('./swf.component.html');
+var css = require('./swf.component.css');
 var SWFComponent = (function () {
     function SWFComponent(router) {
         var _this = this;
         this.router = router;
         this.swf = swfObject;
+        this.protocol = protocol;
         router.events.subscribe(function (event) {
             _this.navigationInterceptor(event);
         });
@@ -41,28 +45,39 @@ var SWFComponent = (function () {
         }
     };
     SWFComponent.prototype.loadSWF = function () {
-        var st = config.flashSettings;
-        var flashvars = {};
-        var params = (_a = {},
-            _a[st.play] = st.play,
-            _a[st.loop] = st.loop,
-            _a[st.wmode] = st.wmode,
-            _a[st.quality] = st.quality,
-            _a[st.allowScriptAccess] = st.allowScriptAccess,
-            _a[st.scale] = st.scale,
-            _a[st.align] = st.align,
-            _a);
-        var attributes = {};
+        // swfobject.createCSS("#flashContent", "display:block;text-align:left;");
+        var st = config.flashSettings.desktop;
+        var flashvars = {
+            "f2p": config.baseSettings.gateway,
+            "uploadUrl": st.upladUrl,
+            "imageUrl": st.imageUrl,
+        };
+        var params = {
+            'play': st.play,
+            'loop': st.loop,
+            'wmode': st.wmode,
+            'quality': st.quality,
+            'allowScriptAccess': st.allowScriptAccess,
+            'allowFullScreen': st.allowFullScreen,
+            'scale': st.scale,
+            'align': st.align,
+            'bgcolor': st.bgcolor
+        };
+        var attributes = {
+            'id': st.id,
+            'name': st.name,
+            'align': st.align
+        };
         var flash = null;
-        this.swf.embedSWF(st.src, st.flashID, st.width, st.height, st.version, st.expressInstallSwfurl, flashvars, params, attributes, function (e) { flash = e.ref; });
-        var _a;
+        this.swf.embedSWF(st.src, st.flashID, st.width, st.height, st.version, st.xiSwfUrlStr, flashvars, params, attributes, function (e) { flash = e.ref; });
     };
     return SWFComponent;
 }());
 SWFComponent = __decorate([
     core_1.Component({
         selector: 'app-swf',
-        template: "<div id=\"BridgeMovie\"><p>Loading swf...</p></div>"
+        template: template,
+        styles: [css]
     }),
     __metadata("design:paramtypes", [router_1.Router])
 ], SWFComponent);

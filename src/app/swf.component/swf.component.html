@@ -1,0 +1,161 @@
+<div id="flashContent">
+  <p>Loading swf...</p>
+  <a href='http://www.adobe.com/go/getflashplayer'>
+    <img [src]="protocol + 'www.adobe.com/images/shared/download_buttons/get_flash_player.gif'"
+         alt='Get Adobe Flash player' />
+  </a>
+</div>
+
+<!--&lt;!&ndash;-->
+  <!--Licensed to the Apache Software Foundation (ASF) under one or more-->
+  <!--contributor license agreements.  See the NOTICE file distributed with-->
+  <!--this work for additional information regarding copyright ownership.-->
+  <!--The ASF licenses this file to You under the Apache License, Version 2.0-->
+  <!--(the "License"); you may not use this file except in compliance with-->
+  <!--the License.  You may obtain a copy of the License at-->
+
+      <!--http://www.apache.org/licenses/LICENSE-2.0-->
+
+  <!--Unless required by applicable law or agreed to in writing, software-->
+  <!--distributed under the License is distributed on an "AS IS" BASIS,-->
+  <!--WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.-->
+  <!--See the License for the specific language governing permissions and-->
+  <!--limitations under the License.-->
+<!--&ndash;&gt;-->
+<!--<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">-->
+<!--&lt;!&ndash; saved from url=(0014)about:internet &ndash;&gt;-->
+<!--<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">-->
+<!--&lt;!&ndash;-->
+<!--Smart developers always View Source.-->
+
+<!--This application was built using Apache Flex, an open source framework-->
+<!--for building rich Internet applications that get delivered via the-->
+<!--Flash Player or to desktops and mobile phones via Adobe AIR.-->
+
+<!--Learn more about Flex at http://flex.apache.org-->
+<!--// &ndash;&gt;-->
+<!--<head>-->
+  <!--<title>CalculatorAdmin</title>-->
+  <!--<meta name="google" value="notranslate" />-->
+  <!--<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />-->
+  <!--&lt;!&ndash; Include CSS to eliminate any default margins/padding and set the height of the html element and-->
+       <!--the body element to 100%, because Firefox, or any Gecko based browser, interprets percentage as-->
+       <!--the percentage of the height of its parent container, which has to be set explicitly.  Fix for-->
+       <!--Firefox 3.6 focus border issues.  Initially, don't display flashContent div so it won't show-->
+       <!--if JavaScript disabled.-->
+  <!--&ndash;&gt;-->
+  <!--<style type="text/css" media="screen">-->
+    <!--html, body  { height:100%; }-->
+    <!--body { margin:0; padding:0; overflow:auto; text-align:center;-->
+      <!--background-color: #ffffff; }-->
+    <!--object:focus { outline:none; }-->
+    <!--#flashContent { display:none; }-->
+  <!--</style>-->
+
+  <!--&lt;!&ndash; Enable Browser History by replacing useBrowserHistory tokens with two hyphens &ndash;&gt;-->
+  <!--&lt;!&ndash; BEGIN Browser History required section &ndash;&gt;-->
+  <!--<link rel="stylesheet" type="text/css" href="history/history.css" />-->
+  <!--<script type="text/javascript" src="history/history.js"></script>-->
+  <!--&lt;!&ndash; END Browser History required section &ndash;&gt;-->
+
+  <!--<script type="text/javascript" src="options.js"></script>-->
+  <!--<script type="text/javascript" src="swfobject.js"></script>-->
+  <!--<script type="text/javascript">-->
+    <!--// For version detection, set to min. required Flash Player version, or 0 (or 0.0.0), for no version detection.-->
+    <!--var swfVersionStr = "14.0.0";-->
+    <!--// To use express install, set to playerProductInstall.swf, otherwise the empty string.-->
+    <!--var xiSwfUrlStr = "playerProductInstall.swf";-->
+    <!--if (typeof options === 'undefined')-->
+    <!--{-->
+      <!--options = {server:'http://192.168.2.2/ccalc/'};-->
+    <!--}-->
+
+    <!--var swfName = "CalculatorAdmin";-->
+    <!--var appName = "CalculatorAdmin";-->
+    <!--/*if (isTouchDevice()) {-->
+     <!--appName += "Tablet";-->
+     <!--swfName += "Tablet";-->
+     <!--}*/-->
+
+    <!--var flashvars = {};-->
+    <!--/*flashvars.f2p    = options.server + 'flash2php/gateway.php';-->
+     <!--flashvars.uploadUrl = options.server + 'upload.php';-->
+     <!--flashvars.editExcelUrl = options.server + 'index.php';*/-->
+
+    <!--flashvars.f2p = 'http://local.innim.ru/ccalc/flash2php/gateway.php';-->
+    <!--flashvars.uploadUrl = 'http://local.innim.ru/ccalc/upload.php';-->
+    <!--flashvars.imageUrl =  'http://local.innim.ru/ccalc/media/sketch/';-->
+
+    <!--//	flashvars.imageUrl =  'd:\\test\\img\\sketch\\';-->
+    <!--//	flashvars.imageUrl =  options.server + 'media/sketch/';-->
+
+    <!--var params = {};-->
+    <!--params.quality = "high";-->
+    <!--params.bgcolor = "#ffffff";-->
+    <!--params.allowscriptaccess = "sameDomain";-->
+    <!--params.allowfullscreen = "true";-->
+    <!--var attributes = {};-->
+    <!--attributes.id = appName;-->
+    <!--attributes.name = appName;-->
+    <!--attributes.align = "middle";-->
+    <!--swfobject.embedSWF(-->
+      <!--swfName + ".swf", "flashContent",-->
+      <!--"100%", "100%",-->
+      <!--swfVersionStr, xiSwfUrlStr,-->
+      <!--flashvars, params, attributes);-->
+    <!--// JavaScript enabled so display the flashContent div in case it is not replaced with a swf object.-->
+    <!--swfobject.createCSS("#flashContent", "display:block;text-align:left;");-->
+
+    <!--function isTouchDevice() {-->
+      <!--var el = document.createElement('div');-->
+      <!--el.setAttribute('ongesturestart', 'return;'); // or try "ontouchstart"-->
+      <!--return typeof el.ongesturestart === "function";-->
+    <!--}-->
+  <!--</script>-->
+<!--</head>-->
+<!--<body>-->
+<!--&lt;!&ndash; SWFObject's dynamic embed method replaces this alternative HTML content with Flash content when enough-->
+     <!--JavaScript and Flash plug-in support is available. The div is initially hidden so that it doesn't show-->
+     <!--when JavaScript is disabled.-->
+<!--&ndash;&gt;-->
+<!--<div id="flashContent">-->
+  <!--<p>-->
+    <!--To view this page ensure that Adobe Flash Player version-->
+    <!--14.0.0 or greater is installed.-->
+  <!--</p>-->
+  <!--<script type="text/javascript">-->
+    <!--var pageHost = ((document.location.protocol == "https:") ? "https://" : "http://");-->
+    <!--document.write("<a href='http://www.adobe.com/go/getflashplayer'><img src='" + pageHost + "www.adobe.com/images/shared/download_buttons/get_flash_player.gif' alt='Get Adobe Flash player' /></a>" );-->
+  <!--</script>-->
+<!--</div>-->
+
+<!--<noscript>-->
+  <!--<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="100%" height="100%" id="CalculatorAdmin">-->
+    <!--<param name="movie" value="CalculatorAdmin.swf" />-->
+    <!--<param name="quality" value="high" />-->
+    <!--<param name="bgcolor" value="#ffffff" />-->
+    <!--<param name="allowScriptAccess" value="sameDomain" />-->
+    <!--<param name="allowFullScreen" value="true" />-->
+    <!--&lt;!&ndash;[if !IE]>&ndash;&gt;-->
+    <!--<object type="application/x-shockwave-flash" data="CalculatorAdmin.swf" width="100%" height="100%">-->
+      <!--<param name="quality" value="high" />-->
+      <!--<param name="bgcolor" value="#ffffff" />-->
+      <!--<param name="allowScriptAccess" value="sameDomain" />-->
+      <!--<param name="allowFullScreen" value="true" />-->
+      <!--&lt;!&ndash;<![endif]&ndash;&gt;-->
+      <!--&lt;!&ndash;[if gte IE 6]>&ndash;&gt;-->
+      <!--<p>-->
+        <!--Either scripts and active content are not permitted to run or Adobe Flash Player version-->
+        <!--14.0.0 or greater is not installed.-->
+      <!--</p>-->
+      <!--&lt;!&ndash;<![endif]&ndash;&gt;-->
+      <!--<a href="http://www.adobe.com/go/getflashplayer">-->
+        <!--<img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash Player" />-->
+      <!--</a>-->
+      <!--&lt;!&ndash;[if !IE]>&ndash;&gt;-->
+    <!--</object>-->
+    <!--&lt;!&ndash;<![endif]&ndash;&gt;-->
+  <!--</object>-->
+<!--</noscript>-->
+<!--</body>-->
+<!--</html>-->

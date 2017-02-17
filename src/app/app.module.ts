@@ -15,11 +15,19 @@ import { SWFComponent } from './swf.component/swf.component';
 import { AuthGuard } from './services/auth-guard.service';
 import { UserService } from './services/user.service';
 
-import { routing, routedComponents } from './routes';
+import { routing, routedComponents } from './app.routes';
+import {ModalModule} from "angular2-modal";
+import {BootstrapModalModule} from "angular2-modal/plugins/bootstrap";
+import {CustomModal} from "./modal.component/modal.component";
 
 @NgModule({
     imports: [
-        BrowserModule, FormsModule, CommonModule, routing
+        BrowserModule,
+        FormsModule,
+        CommonModule,
+        routing,
+        ModalModule.forRoot(),
+        BootstrapModalModule
     ],
     declarations: [
         AppComponent,
@@ -28,10 +36,12 @@ import { routing, routedComponents } from './routes';
         TechnologicalTabComponent,
         AdvancedTabComponent,
         WindowComponent,
+        CustomModal,
         SWFComponent,
         routedComponents
     ],
     providers: [AuthGuard, UserService],
-    bootstrap: [AppComponent]
+    bootstrap: [AppComponent],
+    entryComponents: [WindowComponent, CustomModal]
 })
 export class AppModule {}

@@ -53,7 +53,6 @@ TabsComponent = __decorate([
         selector: 'dynamic-tabs',
         entryComponents: [tab_component_1.TechnologicalTabComponent, tab_component_1.AdvancedTabComponent],
         template: template,
-        styles: [css]
     }),
     __metadata("design:paramtypes", [])
 ], TabsComponent);
@@ -96,8 +95,7 @@ __decorate([
 TabContent = __decorate([
     core_1.Component({
         selector: 'tab-content',
-        template: "<div class=\"content\" id=\"container\" #dynamicComponentContainer></div>",
-        styles: [css]
+        template: "<div ><div class=\"panel-body\" id=\"container\" #dynamicComponentContainer></div></div> ",
     }),
     __metadata("design:paramtypes", [core_2.ComponentFactoryResolver])
 ], TabContent);

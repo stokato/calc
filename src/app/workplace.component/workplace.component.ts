@@ -3,7 +3,10 @@
  */
 
 import {Component, ViewChild} from "@angular/core";
-import {WindowComponent} from "../window.component/window.component";
+import {WindowComponent, SettingsModalContext} from "../window.component/window.component";
+import {Modal, overlayConfigFactory} from "angular2-modal";
+import {BSModalContext} from "angular2-modal/plugins/bootstrap";
+import {CustomModal} from "../modal.component/modal.component";
 
 const template = require('./workplace.component.html');
 
@@ -14,11 +17,13 @@ const template = require('./workplace.component.html');
 export class WorkPlaceComponent {
     @ViewChild('windowApp') windowComponent: WindowComponent;
 
-    constructor() {
+    constructor(private modal: Modal) {
 
     }
 
     openWindow() {
-        this.windowComponent.open()
+        // this.windowComponent.open()
+        this.modal.open(WindowComponent, overlayConfigFactory({}, BSModalContext));
+        // this.modal.open(CustomModal, overlayConfigFactory({num1: 2, num2: 3}, BSModalContext));
     }
 }

@@ -14,7 +14,7 @@ const css      = require('./tabs.component.css');
     selector: 'dynamic-tabs',
     entryComponents: [TechnologicalTabComponent, AdvancedTabComponent],
     template: template,
-    styles: [ css ]
+    // styles: [ css ]
 })
 export class TabsComponent {
     componentData = null;
@@ -57,8 +57,8 @@ export class TabsComponent {
 
 @Component({
     selector: 'tab-content',
-    template: `<div class="content" id="container" #dynamicComponentContainer></div>`,
-    styles: [ css ]
+    template: `<div ><div class="panel-body" id="container" #dynamicComponentContainer></div></div> `,
+    // styles: [ css ]
 })
 export class TabContent {
     currentComponent = null;

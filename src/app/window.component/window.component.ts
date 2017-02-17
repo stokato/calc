@@ -5,10 +5,18 @@
 import {Component} from '@angular/core';
 import {FlashService} from "../services/flash.service";
 import {SettingsService} from '../services/settings.service';
+import { BSModalContext } from 'angular2-modal/plugins/bootstrap';
+import {ModalComponent, DialogRef} from "angular2-modal";
 
 
 const template = require('./window.component.html');
 const css      = require('./window.component.css');
+
+export class SettingsModalContext extends BSModalContext {
+    constructor() {
+        super();
+    }
+}
 
 @Component({
     selector: 'app-window',
@@ -16,12 +24,12 @@ const css      = require('./window.component.css');
     styles: [css],
     providers: [FlashService, SettingsService]
 })
-export class WindowComponent {
-    isHidden: boolean = true;
+export class WindowComponent implements ModalComponent<SettingsModalContext> {
+    isHidden: boolean = false;
     isActive: boolean;
     sService: SettingsService;
 
-    constructor() {
+    constructor(public dialog: DialogRef<SettingsModalContext>) {
 
         this.sService = SettingsService.getInstance();
 
@@ -29,6 +37,7 @@ export class WindowComponent {
 
         if(this.sService.isLoaded) {
             this.isActive = true;
+            this.isHidden = false;
         } else {
             this.sService.load()
                 .then(res => {
@@ -62,8 +71,8 @@ export class WindowComponent {
     }
 
     close() {
-        this.isHidden = true;
-
+        // this.isHidden = true;
+        this.dialog.close();
         // сообщяем что то флешке
         // let value = "Received from JS";
 

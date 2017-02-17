@@ -19,7 +19,10 @@ var window_component_1 = require("./window.component/window.component");
 var swf_component_1 = require("./swf.component/swf.component");
 var auth_guard_service_1 = require("./services/auth-guard.service");
 var user_service_1 = require("./services/user.service");
-var routes_1 = require("./routes");
+var app_routes_1 = require("./app.routes");
+var angular2_modal_1 = require("angular2-modal");
+var bootstrap_1 = require("angular2-modal/plugins/bootstrap");
+var modal_component_1 = require("./modal.component/modal.component");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -28,7 +31,12 @@ var AppModule = (function () {
 AppModule = __decorate([
     core_1.NgModule({
         imports: [
-            platform_browser_1.BrowserModule, forms_1.FormsModule, common_1.CommonModule, routes_1.routing
+            platform_browser_1.BrowserModule,
+            forms_1.FormsModule,
+            common_1.CommonModule,
+            app_routes_1.routing,
+            angular2_modal_1.ModalModule.forRoot(),
+            bootstrap_1.BootstrapModalModule
         ],
         declarations: [
             app_component_1.AppComponent,
@@ -37,11 +45,13 @@ AppModule = __decorate([
             tab_component_1.TechnologicalTabComponent,
             tab_component_1.AdvancedTabComponent,
             window_component_1.WindowComponent,
+            modal_component_1.CustomModal,
             swf_component_1.SWFComponent,
-            routes_1.routedComponents
+            app_routes_1.routedComponents
         ],
         providers: [auth_guard_service_1.AuthGuard, user_service_1.UserService],
-        bootstrap: [app_component_1.AppComponent]
+        bootstrap: [app_component_1.AppComponent],
+        entryComponents: [window_component_1.WindowComponent, modal_component_1.CustomModal]
     })
 ], AppModule);
 exports.AppModule = AppModule;

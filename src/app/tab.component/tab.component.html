@@ -1,119 +1,106 @@
-<div>
-  <ul>
-    <li>
-      <label>
-        <input type="checkbox" [checked]="saveCalculationRoute"
-               (change)="inputOption('saveCalculationRoute', $event.target.checked)" />
-        Сохранять маршрут вычислений
-      </label>
-    </li>
-    <li>
-      <label>
+<div class="row">
+  <div class="col-md-2">
+    <div class="form-group col-xs-3">
+
+      <div class="input-group input-group-sm "><span class="input-group-addon">
+        <input type="checkbox"  [checked]="saveCalculationRoute"
+               (change)="inputOption('saveCalculationRoute', $event.target.checked)" /></span>
+        <span class="input-group-addon ">Сохранять маршрут вычислений</span>
+      </div>
+
+      <div class="input-group input-group-sm"><span class="input-group-addon">
         <input type="checkbox" [checked]="profilesPackagesSpec"
-               (change)="inputOption('profilesPackagesSpec', $event.target.checked)" />
-        Спецификация профилей и пакетов для сборки
-      </label>
-    </li>
-    <li>
-      <label>
+               (change)="inputOption('profilesPackagesSpec', $event.target.checked)" /></span>
+        <span class="input-group-addon">Спецификация профилей и пакетов для сборки</span>
+      </div>
+
+      <div class="input-group input-group-sm"><span class="input-group-addon">
         <input type="checkbox" [checked]="separateContoursBoxSpec"
-               (change)="inputOption('separateContoursBoxSpec', $event.target.checked)" />
-        Разделять спецификацию по контурам коробки
-      </label>
-    </li>
-    <li>
-      <label>
+               (change)="inputOption('separateContoursBoxSpec', $event.target.checked)" /></span>
+        <span class="input-group-addon">Разделять спецификацию по контурам коробки</span>
+      </div>
+
+      <div class="input-group input-group-sm"><span class="input-group-addon">
         <input type="checkbox" [checked]="mosquitoNetsSpec"
-               (change)="inputOption('mosquitoNetsSpec', $event.target.checked)" />
-        Спецификация москитных сеток для сборки
-      </label>
-    </li>
-    <li>
-      <label>
+               (change)="inputOption('mosquitoNetsSpec', $event.target.checked)" /></span>
+        <span class="input-group-addon">Спецификация москитных сеток для сборки</span>
+      </div>
+
+      <div class="input-group input-group-sm"><span class="input-group-addon">
         <input type="checkbox" [checked]="equalityOfTextures"
-               (change)="inputOption('equalityOfTextures', $event.target.checked)" />
-        Все текстуры внутренних элементов равны основной
-      </label>
-    </li>
-    <li>
-      <label>
+               (change)="inputOption('equalityOfTextures', $event.target.checked)" /></span>
+        <span class="input-group-addon">Все текстуры внутренних элементов равны основной</span>
+      </div>
+
+      <div class="input-group input-group-sm"><span class="input-group-addon">
         <input type="checkbox" [checked]="mirrorOptionsSelection"
-               (change)="inputOption('mirrorOptionsSelection', $event.target.checked)" />
-        Подбор зеркальных вариантов соединений (по умолчанию)
-      </label>
-    </li>
-    <li>
-      <label>
+               (change)="inputOption('mirrorOptionsSelection', $event.target.checked)" /></span>
+        <span class="input-group-addon">Подбор зеркальных вариантов соединений (по умолчанию)</span>
+      </div>
+
+      <div class="input-group input-group-sm"><span class="input-group-addon">
         <input type="checkbox" [checked]="takeGrooveWithSidesCalculation"
-               (change)="inputOption('takeGrooveWithSidesCalculation', $event.target.checked)" />
-        Расчет сторон фурнитуры с учетом фальца
-      </label>
-    </li>
-    <li>
-      <label>
+               (change)="inputOption('takeGrooveWithSidesCalculation', $event.target.checked)" /></span>
+        <span class="input-group-addon">Расчет сторон фурнитуры с учетом фальца</span>
+      </div>
+
+      <div class="input-group input-group-sm"><span class="input-group-addon">
         <input type="checkbox" [checked]="checkMinRadiusOfBending"
-               (change)="inputOption('checkMinRadiusOfBending', $event.target.checked)" />
-        Проверять минимальный радиус гиба профилей
-      </label>
-    </li>
-    <li>
-      <label>
+               (change)="inputOption('checkMinRadiusOfBending', $event.target.checked)" /></span>
+        <span class="input-group-addon">Проверять минимальный радиус гиба профилей</span>
+      </div>
+
+      <div class="input-group input-group-sm"><span class="input-group-addon">
         <input type="checkbox" [checked]="analizeContourAngularDeformation"
-               (change)="inputOption('analizeContourAngularDeformation', $event.target.checked)" />
-        Анализ угловой деформации контуров пакетов
-      </label>
-    </li>
-    <li>
-      <label>
+               (change)="inputOption('analizeContourAngularDeformation', $event.target.checked)" /></span>
+        <span class="input-group-addon">Анализ угловой деформации контуров пакетов</span>
+      </div>
+
+      <div class="input-group input-group-sm"><span class="input-group-addon">
         <input type="checkbox" [checked]="rectangleFillsArea"
-               (change)="inputOption('rectangleFillsArea', $event.target.checked)" />
-        Площадь заполнений по описывающему прямоугольнику
-      </label>
-    </li>
-    <li>
-      <label>
+               (change)="inputOption('rectangleFillsArea', $event.target.checked)" /></span>
+        <span class="input-group-addon">Площадь заполнений по описывающему прямоугольни</span>
+      </div>
+
+      <div class="input-group input-group-sm"><span class="input-group-addon">
         <input type="checkbox" [checked]="minSideFillsBeadingsCalculateActive > 0"
-               (change)="minSideFillsBeadingsCalculateActive = $event.target.checked" />
-        Не рассчитывать штапики на стороне заполнений (мин. значение)
-        <input type="number" [value]="minSideFillsBeadingsCalculate"
+               (change)="minSideFillsBeadingsCalculateActive = $event.target.checked" /></span>
+        <input type="number" class="form-control number"  [value]="minSideFillsBeadingsCalculate"
                [disabled]="minSideFillsBeadingsCalculateActive == false"
                (input)="inputOption('minSideFillsBeadingsCalculate', $event.target.value)" />
-      </label>
-    </li>
-    <li>
-      <label>
+        <span class="input-group-addon">Не рассчитывать штапики на стороне заполнений (мин. значение)</span>
+      </div>
+
+      <div class="input-group input-group-sm"><span class="input-group-addon">
         <input type="checkbox" [checked]="installCornerImpostlWith2L"
-               (change)="inputOption('installCornerImpostlWith2L', $event.target.checked)" />
-        Установка импоста в угол коробки с преобразованием 2L
-      </label>
-    </li>
-    <li>
-      <label>
+               (change)="inputOption('installCornerImpostlWith2L', $event.target.checked)" /></span>
+        <span class="input-group-addon">Установка импоста в угол коробки с преобразованием 2L</span>
+      </div>
+
+      <div class="input-group input-group-sm"><span class="input-group-addon">
         <input type="checkbox" [checked]="notRoundProfileCount"
-               (change)="inputOption('notRoundProfileCount', $event.target.checked)" />
-        Не округлять количество профилей до целого значения
-      </label>
-    </li>
-    <li>
-      <label>
+               (change)="inputOption('notRoundProfileCount', $event.target.checked)" /></span>
+        <span class="input-group-addon">Не округлять количество профилей до целого значения</span>
+      </div>
+
+      <div class="input-group input-group-sm"><span class="input-group-addon">
         <input type="checkbox" [checked]="activateDefCompoundsForAttachedProfiles"
-               (change)="inputOption('activateDefCompoundsForAttachedProfiles', $event.target.checked)" />
-        Активация составов по умолчанию для прилегающих и присоединенных профилей
-      </label>
-    </li>
-    <li>
-      <label>
+               (change)="inputOption('activateDefCompoundsForAttachedProfiles', $event.target.checked)" /></span>
+        <span class="input-group-addon">Активация составов по умолчанию для прилегающих и присоединенных профилей</span>
+      </div>
+
+      <div class="input-group input-group-sm"><span class="input-group-addon">
         <input type="checkbox" [checked]="selectNewProfilesWithTexturePriority"
-               (change)="inputOption('selectNewProfilesWithTexturePriority', $event.target.checked)" />
-        Подбирать новые профили в приоритете текстур изделия
-      </label>
-    </li>
-    <li>
-      <label>
+               (change)="inputOption('selectNewProfilesWithTexturePriority', $event.target.checked)" /></span>
+        <span class="input-group-addon">Подбирать новые профили в приоритете текстур изделия</span>
+      </div>
+
+      <div class="input-group input-group-sm"><span class="input-group-addon">
         <input type="checkbox" [checked]="replaceAllFittingsWithProfileChanging"
-               (change)="inputOption('replaceAllFittingsWithProfileChanging', $event.target.checked)" />
-        Заменять всю фурнитуру при смене системы профилей
-      </label>
-    </li>
-  </ul>
+               (change)="inputOption('replaceAllFittingsWithProfileChanging', $event.target.checked)" /></span>
+        <span class="input-group-addon">Заменять всю фурнитуру при смене системы профилей</span>
+      </div>
+
+    </div>
+  </div>
 </div>

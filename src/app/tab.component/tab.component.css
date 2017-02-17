@@ -1,24 +1,32 @@
-ul, li {
-	/*position: relative;*/
-	border:0pt none;
-	font-family:inherit;
-	font-size:90%;
-	font-style:inherit;
-	font-weight:inherit;
-	margin:0pt;
-	padding:2px;
-	vertical-align:baseline;
-  list-style: none;
-  line-width: 50px;
-}
+/*ul, li {*/
+	/*!*position: relative;*!*/
+	/*border:0pt none;*/
+	/*font-family:inherit;*/
+	/*font-size:90%;*/
+	/*font-style:inherit;*/
+	/*font-weight:inherit;*/
+	/*margin:0pt;*/
+	/*padding:2px;*/
+	/*vertical-align:baseline;*/
+  /*list-style: none;*/
+  /*line-width: 50px;*/
+/*}*/
 
-ul li input {
-	/*position: absolute;*/
-	/*right: 4px;*/
-	margin-right: 4px;
-}
+/*ul li input {*/
+	/*!*position: absolute;*!*/
+	/*!*right: 4px;*!*/
+	/*margin-right: 4px;*/
+/*}*/
 
-ul li input[type="number"] {
+/*ul li input[type="number"] {*/
+	/*width: 60px;*/
+	/*margin-left: 5px;*/
+/*}*/
+
+.number {
 	width: 60px;
-	margin-left: 5px;
+}
+
+.input-group {
+	margin-bottom: 5px;
 }

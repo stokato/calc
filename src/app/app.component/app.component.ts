@@ -3,8 +3,9 @@
  */
 
 
-import {Component, ViewChild} from '@angular/core';
+import {Component, ViewChild, ViewContainerRef} from '@angular/core';
 import {WindowComponent} from "../window.component/window.component";
+import {Overlay} from "angular2-modal";
 // import { AuthService } from '../services/auth.service';
 
 const template = require('./app.component.html');
@@ -18,8 +19,8 @@ const template = require('./app.component.html');
 })
 export class AppComponent {
 
-    constructor () {
-
+    constructor (overlay: Overlay, viewContainer: ViewContainerRef) {
+        overlay.defaultViewContainer = viewContainer;
 
         // debugger;
     }

@@ -12,11 +12,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
+var angular2_modal_1 = require("angular2-modal");
 // import { AuthService } from '../services/auth.service';
 var template = require('./app.component.html');
 // const css      = require('../../assets/css/style.css');
 var AppComponent = (function () {
-    function AppComponent() {
+    function AppComponent(overlay, viewContainer) {
+        overlay.defaultViewContainer = viewContainer;
         // debugger;
     }
     return AppComponent;
@@ -27,7 +29,7 @@ AppComponent = __decorate([
         template: template,
         styles: [],
     }),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [angular2_modal_1.Overlay, core_1.ViewContainerRef])
 ], AppComponent);
 exports.AppComponent = AppComponent;
 //# sourceMappingURL=app.component.js.map

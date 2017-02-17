@@ -1,13 +1,26 @@
-<div id="parent_popup_click1" class="parent_popup_click" [hidden]="isHidden">
-  <div class="popup_click">
-    <h2>Настройки</h2>
-    <dynamic-tabs></dynamic-tabs>
-    <!--<a class="close" title="Закрыть" onclick="document.getElementById('parent_popup_click1').style.display='none';">X</a>-->
-    <a class="close" title="Закрыть" (click)="close()">X</a>
-    <div id="footer">
-      <button (click)="saveSettings()">Сохранить</button>
+<div class="container-fluid">
+  <div class="modal-header">
+    <h3 class="modal-title">Настройки</h3>
+    <div class="modal-body">
+      <dynamic-tabs></dynamic-tabs>
+    </div>
+    <div id="modal-footer">
+      <button class="btn btn-primary" (click)="saveSettings()">Сохранить</button>
+      <button class="btn" (click)="close()">Закрыть</button>
     </div>
   </div>
 </div>
+
+<!--<div id="parent_popup_click1" class="parent_popup_click" [hidden]="isHidden">Окно настроек-->
+  <!--<div class="popup_click">-->
+    <!--<h3>Настройки</h3>-->
+    <!--<dynamic-tabs></dynamic-tabs>-->
+    <!--&lt;!&ndash;<a class="close" title="Закрыть" onclick="document.getElementById('parent_popup_click1').style.display='none';">X</a>&ndash;&gt;-->
+    <!--<a class="close" title="Закрыть" (click)="close()">X</a>-->
+    <!--<div id="footer">-->
+      <!--<button (click)="saveSettings()">Сохранить</button>-->
+    <!--</div>-->
+  <!--</div>-->
+<!--</div>-->
 
 <!--[style.display]="isHidden?'none':'block'"-->

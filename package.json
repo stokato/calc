@@ -21,6 +21,7 @@
     "@angular/router": "^3.4.5",
     "angular-swfobject": "^1.2.1",
     "angular2-jwt": "^0.1.28",
+    "angular2-modal": "^2.0.3",
     "core-js": "^2.4.1",
     "ng-lightning": "^1.2.0",
     "rxjs": "^5.1.0",

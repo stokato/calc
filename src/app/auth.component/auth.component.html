@@ -1,7 +1,61 @@
-<div class="parent">
-  <div class="block">
-    <label>email<input type="text" [value]="email" (input)="email = $event.target.value" /></label><br>
-    <label>password<input type="password" [value]="password" (input)="password = $event.target.value" /></label>
-    <br><button (click)="onSubmit()">Войти</button>
+<div class="back">
+  <div class="container">
+    <div class="row main">
+      <div class="panel-heading">
+        <div class="panel-title text-center">
+          <h3 class="title">Вход</h3>
+        </div>
+      </div>
+
+      <div class="main-login main-center">
+        <form class="form-horizontal" method="post" action="#">
+
+          <div class="form-group">
+            <div class="cols-sm-10">
+              <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i>@</span>
+                <input type="text" class="form-control"
+                       [value]="email" (input)="email = $event.target.value"
+                       placeholder="Enter your e-mail"/>
+              </div>
+
+              <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i>Password</span>
+                <input type="password" class="form-control"
+                       [value]="password" (input)="password = $event.target.value"
+                       placeholder="Enter your password"/>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group ">
+            <button type="button" class="btn btn-primary btn-lg btn-block login-button" (click)="onSubmit()">Войти</button>
+          </div>
+
+        </form>
+      </div>
+</div>
+
+
+    <!--<div class="panel-body">-->
+      <!--<div class="form-group">-->
+
+        <!--<div class="input-group input-group-sm ">-->
+          <!--<input type="text" class="form-control"-->
+                 <!--[value]="email" (input)="email = $event.target.value"-->
+                 <!--placeholder="Enter your e-mail"/>-->
+          <!--<span class="input-group-addon ">E-Mail</span>-->
+        <!--</div>-->
+        <!--<br/>-->
+        <!--<div class="input-group input-group-sm ">-->
+          <!--<input type="password" class="form-control"-->
+                 <!--[value]="password" (input)="password = $event.target.value"-->
+                 <!--placeholder="Enter your password"/>-->
+          <!--<span class="input-group-addon ">Password</span>-->
+        <!--</div>-->
+        <!--<br><button class="btn btn-primary" (click)="onSubmit()">Enter</button>-->
+      <!--</div>-->
+    <!--</div>-->
   </div>
 </div>
+

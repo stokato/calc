@@ -4,11 +4,13 @@
 
 import {Injectable} from "@angular/core";
 
-const config = require('../config.json');
+//const config = require('../config.json');
+const config = window['config'];
+
 
 @Injectable()
 export class FlashService {
-    static call(method: string, params: any) {
+    static call(method: string, ...params) {
         let flashID = config.flashSettings.flashID;
 
         let M$ = navigator.appName.indexOf("Microsoft")!=-1;
@@ -16,7 +18,7 @@ export class FlashService {
 
         //TODO: вызов call(method, params)
         if(flash[method]) {
-           flash[method](params);
+           flash[method](...params);
         }
     };
 

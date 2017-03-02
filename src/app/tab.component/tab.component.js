@@ -31,19 +31,11 @@ var TechnologicalTabComponent = (function (_super) {
     function TechnologicalTabComponent() {
         var _this = _super.call(this) || this;
         _this.sService = settings_service_1.SettingsService.getInstance();
-        if (_this.sService.isLoaded) {
-            _this.initFields();
-        }
-        else {
-            _this.sService.load()
-                .then(function (res) {
-                _this.initFields();
-            }, function (error) {
-                alert(error);
-            });
-        }
         return _this;
     }
+    TechnologicalTabComponent.prototype.ngOnInit = function () {
+        this.initFields();
+    };
     TechnologicalTabComponent.prototype.initFields = function () {
         this.saveCalculationRoute = this.sService.getOptionValue('saveCalculationRoute');
         this.profilesPackagesSpec = this.sService.getOptionValue('profilesPackagesSpec');
@@ -62,6 +54,8 @@ var TechnologicalTabComponent = (function (_super) {
         this.activateDefCompoundsForAttachedProfiles = this.sService.getOptionValue('activateDefCompoundsForAttachedProfiles');
         this.selectNewProfilesWithTexturePriority = this.sService.getOptionValue('selectNewProfilesWithTexturePriority');
         this.replaceAllFittingsWithProfileChanging = this.sService.getOptionValue('replaceAllFittingsWithProfileChanging');
+        console.log(this.installCornerImpostlWith2L);
+        console.log(this.notRoundProfileCount);
     };
     TechnologicalTabComponent.prototype.inputOption = function (option, value) {
         this[option] = value;

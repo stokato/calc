@@ -7,7 +7,8 @@ import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component/app.component';
-import { TabsComponent, TabContent } from './tabs.component/tabs.component';
+import { TabsComponent } from './tabs.component/tabs.component';
+import { TabContent } from './tab.content/tab.content';
 import { TechnologicalTabComponent, AdvancedTabComponent } from './tab.component/tab.component';
 import { FormsModule } from '@angular/forms';
 import { WindowComponent} from './window.component/window.component';

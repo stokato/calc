@@ -1,6 +1,6 @@
 <div>
   <ul class="nav nav-tabs">
-    <li *ngFor="let tab of tabs" [ngClass]="tab.active? {active:true} : {active:false}"><a (click)="initTab(tab)" >{{tab.title}}</a></li>
+    <li *ngFor="let tab of tabs"><a (click)="initTab(tab)" >{{tab.title}}</a></li>
   </ul>
 </div>
 

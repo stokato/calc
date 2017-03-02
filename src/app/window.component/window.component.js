@@ -17,10 +17,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
-var flash_service_1 = require("../services/flash.service");
 var settings_service_1 = require("../services/settings.service");
 var bootstrap_1 = require("angular2-modal/plugins/bootstrap");
 var angular2_modal_1 = require("angular2-modal");
+var tabs_component_1 = require("../tabs.component/tabs.component");
 var template = require('./window.component.html');
 var css = require('./window.component.css');
 var SettingsModalContext = (function (_super) {
@@ -33,48 +33,20 @@ var SettingsModalContext = (function (_super) {
 exports.SettingsModalContext = SettingsModalContext;
 var WindowComponent = (function () {
     function WindowComponent(dialog) {
-        var _this = this;
         this.dialog = dialog;
-        this.isHidden = false;
-        this.sService = settings_service_1.SettingsService.getInstance();
-        this.initFlashInterfase();
-        if (this.sService.isLoaded) {
-            this.isActive = true;
-            this.isHidden = false;
-        }
-        else {
-            this.sService.load()
-                .then(function (res) {
-                _this.isActive = true;
-            }, function (error) {
-                alert(error);
-            });
-        }
     }
-    WindowComponent.prototype.initFlashInterfase = function () {
+    WindowComponent.prototype.ngOnInit = function () {
         var _this = this;
-        flash_service_1.FlashService.addMethod('recieveFromFlash', function (txt) {
-            console.log(txt);
+        settings_service_1.SettingsService.getInstance()
+            .load()
+            .then(function (res) {
+            _this.tabsComponent.viewContent();
+        }, function (error) {
+            alert(error);
         });
-        flash_service_1.FlashService.addMethod('getSettings', function () {
-            if (_this.isActive) {
-                return _this.sService.settings;
-            }
-            return false;
-        });
-    };
-    WindowComponent.prototype.open = function () {
-        if (this.isActive) {
-            this.isHidden = false;
-        }
-        this.sService.settings;
     };
     WindowComponent.prototype.close = function () {
-        // this.isHidden = true;
         this.dialog.close();
-        // сообщяем что то флешке
-        // let value = "Received from JS";
-        // FlashService.call('sendFromJS', value);
     };
     WindowComponent.prototype.saveSettings = function () {
         settings_service_1.SettingsService.getInstance()
@@ -87,12 +59,16 @@ var WindowComponent = (function () {
     };
     return WindowComponent;
 }());
+__decorate([
+    core_1.ViewChild('tabsComponent'),
+    __metadata("design:type", tabs_component_1.TabsComponent)
+], WindowComponent.prototype, "tabsComponent", void 0);
 WindowComponent = __decorate([
     core_1.Component({
         selector: 'app-window',
         template: template,
         styles: [css],
-        providers: [flash_service_1.FlashService, settings_service_1.SettingsService]
+        providers: [settings_service_1.SettingsService]
     }),
     __metadata("design:paramtypes", [angular2_modal_1.DialogRef])
 ], WindowComponent);

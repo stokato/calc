@@ -2,7 +2,7 @@
  * Created by "s.t.o.k.a.t.o" on 01.02.2017.
  */
 
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 import { SettingsService } from '../services/settings.service';
 import {error} from "util";
@@ -21,7 +21,7 @@ export class TabComponent {
     styles: [ css ],
     providers: [ SettingsService ]
 })
-export class TechnologicalTabComponent extends TabComponent {
+export class TechnologicalTabComponent extends TabComponent implements OnInit{
     sService: SettingsService;
 
     private saveCalculationRoute: boolean;
@@ -46,18 +46,10 @@ export class TechnologicalTabComponent extends TabComponent {
         super();
 
         this.sService = SettingsService.getInstance();
+    }
 
-        if(this.sService.isLoaded) {
-            this.initFields();
-        } else {
-            this.sService.load()
-                .then(res => {
-                    this.initFields();
-                },
-                error => {
-                    alert(error);
-                });
-        }
+    ngOnInit() {
+        this.initFields();
     }
 
     private initFields() {
@@ -78,6 +70,9 @@ export class TechnologicalTabComponent extends TabComponent {
         this.activateDefCompoundsForAttachedProfiles    = this.sService.getOptionValue('activateDefCompoundsForAttachedProfiles');
         this.selectNewProfilesWithTexturePriority       = this.sService.getOptionValue('selectNewProfilesWithTexturePriority');
         this.replaceAllFittingsWithProfileChanging      = this.sService.getOptionValue('replaceAllFittingsWithProfileChanging');
+
+        console.log(this.installCornerImpostlWith2L);
+        console.log(this.notRoundProfileCount);
     }
 
     inputOption(option, value) {

@@ -13,6 +13,7 @@ var common_1 = require("@angular/common");
 var platform_browser_1 = require("@angular/platform-browser");
 var app_component_1 = require("./app.component/app.component");
 var tabs_component_1 = require("./tabs.component/tabs.component");
+var tab_content_1 = require("./tab.content/tab.content");
 var tab_component_1 = require("./tab.component/tab.component");
 var forms_1 = require("@angular/forms");
 var window_component_1 = require("./window.component/window.component");
@@ -41,7 +42,7 @@ AppModule = __decorate([
         declarations: [
             app_component_1.AppComponent,
             tabs_component_1.TabsComponent,
-            tabs_component_1.TabContent,
+            tab_content_1.TabContent,
             tab_component_1.TechnologicalTabComponent,
             tab_component_1.AdvancedTabComponent,
             window_component_1.WindowComponent,

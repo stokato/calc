@@ -9,6 +9,7 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 const path = require('path');
 const rootDir = path.resolve(__dirname, '..');
 
+
 module.exports = {
   entry: {
     'polyfills': './src/polyfills.ts',

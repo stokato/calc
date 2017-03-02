@@ -6,7 +6,8 @@ import {ServerService} from './server.service';
 import {Injectable} from "@angular/core";
 import {error} from "util";
 
-const config = require('../config.json');
+// const config = require('../config.json');
+const config = window['config'];
 
 @Injectable()
 export class SettingsService {
@@ -14,7 +15,7 @@ export class SettingsService {
     static instance: SettingsService;
 
     server: ServerService;
-    _settings: Array<any> = null;
+    _settings: Array<any> = [];
     dictionary: any;
     private _isLoaded:boolean = false;
 
@@ -45,10 +46,29 @@ export class SettingsService {
     }
 
     load () {
+        this._settings = [];
         return new Promise((resolve, reject) => {
             this.server.info.getSettings((res) => {
                 if(res && res.list) {
-                    this._settings = res.list;
+                    // this._settings = res.list;
+
+                    for(let key in this.dictionary.fields) {
+                        let field = this.dictionary.fields[key];
+
+                        for(let i = 0; i < res.list.length; i++) {
+                            if(res.list[i].uid == field.uid) {
+
+                                let option = res.list[i];
+
+                                if(typeof field.default == "boolean") {
+                                    option.value = (option.value == "1");
+                                }
+
+                                this._settings.push(option);
+                            }
+                        }
+                    }
+
                     this._isLoaded = true;
                     resolve();
                 } else {
@@ -97,8 +117,6 @@ export class SettingsService {
                 });
             }
         }
-
-        console.log(settings);
 
         return settings;
     }

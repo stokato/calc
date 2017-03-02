@@ -12,7 +12,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
-var core_2 = require("@angular/core");
 var tab_component_1 = require("../tab.component/tab.component");
 var template = require('./tabs.component.html');
 var css = require('./tabs.component.css');
@@ -33,12 +32,14 @@ var TabsComponent = (function () {
             }
         ];
         this.tabs = tabList;
+    }
+    TabsComponent.prototype.viewContent = function () {
         for (var i = 0; i < this.tabs.length; i++) {
             if (this.tabs[i].active === true) {
                 this.componentData = this.tabs[i].component;
             }
         }
-    }
+    };
     TabsComponent.prototype.initTab = function (tab) {
         for (var i = 0; i < this.tabs.length; i++) {
             this.tabs[i].active = false;
@@ -57,47 +58,4 @@ TabsComponent = __decorate([
     __metadata("design:paramtypes", [])
 ], TabsComponent);
 exports.TabsComponent = TabsComponent;
-var TabContent = (function () {
-    function TabContent(resolver) {
-        this.resolver = resolver;
-        this.currentComponent = null;
-    }
-    Object.defineProperty(TabContent.prototype, "componentData", {
-        set: function (tabType) {
-            if (!tabType) {
-                return;
-            }
-            // Создаем фабрику
-            var factory = this.resolver.resolveComponentFactory(tabType);
-            // Создаем компанент
-            var component = this.dynamicComponentContainer.createComponent(factory);
-            // Удаляем старый комнонент
-            if (this.currentComponent) {
-                this.currentComponent.destroy();
-            }
-            // Сохраняем новый
-            this.currentComponent = component;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    return TabContent;
-}());
-__decorate([
-    core_2.ViewChild('dynamicComponentContainer', { read: core_2.ViewContainerRef }),
-    __metadata("design:type", core_2.ViewContainerRef)
-], TabContent.prototype, "dynamicComponentContainer", void 0);
-__decorate([
-    core_2.Input(),
-    __metadata("design:type", core_1.Type),
-    __metadata("design:paramtypes", [core_1.Type])
-], TabContent.prototype, "componentData", null);
-TabContent = __decorate([
-    core_1.Component({
-        selector: 'tab-content',
-        template: "<div ><div class=\"panel-body\" id=\"container\" #dynamicComponentContainer></div></div> ",
-    }),
-    __metadata("design:paramtypes", [core_2.ComponentFactoryResolver])
-], TabContent);
-exports.TabContent = TabContent;
 //# sourceMappingURL=tabs.component.js.map

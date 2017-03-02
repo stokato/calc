@@ -5,7 +5,8 @@
 import {Injectable} from "@angular/core";
 import { AuthHttp } from 'angular2-jwt';
 
-const config = require('../config.json');
+// const config = require('../config.json');
+const config = window['config'];
 const F2p = require('../../assets/vendor/F2PInvoker.js');
 
 @Injectable()

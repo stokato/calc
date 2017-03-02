@@ -9,17 +9,22 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 var core_1 = require("@angular/core");
-var config = require('../config.json');
+//const config = require('../config.json');
+var config = window['config'];
 var FlashService = (function () {
     function FlashService() {
     }
-    FlashService.call = function (method, params) {
+    FlashService.call = function (method) {
+        var params = [];
+        for (var _i = 1; _i < arguments.length; _i++) {
+            params[_i - 1] = arguments[_i];
+        }
         var flashID = config.flashSettings.flashID;
         var M$ = navigator.appName.indexOf("Microsoft") != -1;
         var flash = (M$ ? window : document)[flashID];
         //TODO: вызов call(method, params)
         if (flash[method]) {
-            flash[method](params);
+            flash[method].apply(flash, params);
         }
     };
     ;
